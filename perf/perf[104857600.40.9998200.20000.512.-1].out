@@ -1,0 +1,18 @@
+# started on Thu Sep  1 22:44:02 2022
+
+
+ Performance counter stats for 'system wide':
+
+    90,543,213,764      cache-references                                              (20.81%)
+    40,136,152,711      cache-misses              #   44.328 % of all cache refs      (16.19%)
+ 1,769,294,268,379      L1-dcache-load                                                (15.28%)
+    96,269,488,033      L1-dcache-loads-misses    #    5.44% of all L1-dcache hits    (15.51%)
+   381,661,496,161      L1-dcache-stores                                              (16.02%)
+    57,276,552,543      cache-references:u                                            (15.92%)
+    34,169,226,627      cache-misses:u            #   59.657 % of all cache refs      (17.47%)
+   565,491,536,538      L1-dcache-load                                                (17.32%)
+    62,076,310,786      L1-dcache-loads-misses    #   10.98% of all L1-dcache hits    (14.54%)
+    98,629,373,622      L1-dcache-stores                                              (14.91%)
+
+     520.259204806 seconds time elapsed
+
