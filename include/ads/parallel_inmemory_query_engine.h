@@ -157,9 +157,9 @@ void insert_tree_node_m_hybridpqueue_ekosmas_EP(float *paa, isax_node *node, isa
 query_result exact_search_ParISnew_inmemory_hybrid_ekosmas_lf(ts_type *ts, ts_type *paa, isax_index *index, node_list *nodelist,
                            float minimum_distance, const char parallelism_in_subtree, const int third_phase, const int query_id);
 query_result exact_search_ParISnew_inmemory_geopat(ts_type *ts, ts_type *paa, isax_index *index, node_list *nodelist,
-                           float minimum_distance, const char parallelism_in_subtree, const int third_phase, const int query_id) ;
+                           float minimum_distance, const char parallelism_in_subtree, const int third_phase, const int query_id,unsigned long dataset_size) ;
 query_result exact_search_ParISnew_inmemory_geopat_multiple_queues(ts_type *ts, ts_type *paa, isax_index *index, node_list *nodelist,
-                           float minimum_distance, const char parallelism_in_subtree, const int third_phase, const int query_id) ;
+                           float minimum_distance, const char parallelism_in_subtree, const int third_phase, const int query_id,unsigned long dataset_size) ;
 query_result find_distances(ts_type *ts, ts_type *paa, isax_index *index, node_list *nodelist,
                            float minimum_distance, const char parallelism_in_subtree, const int third_phase, const int query_id,unsigned long timeSeriesNum) ;
 
