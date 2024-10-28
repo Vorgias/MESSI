@@ -108,7 +108,14 @@ isax_node * isax_leaf_node_init(int initial_buffer_size, parallel_fbl_soft_buffe
     node->fbl_node = current_fbl_node;
     node->processed = 0;
     node->lock_node = NULL;                                                 // EKOSMAS: ADDED 02 NOVEMBER 2020
-
+    ///////////////////////////////////////////////////
+    node->leaf_id = -1;
+    node->numofleafs = 0;
+    node->rightmost_leaf = NULL;
+    node->leftmost_leaf = NULL;
+    node->leaflist_previous = NULL;
+    node->leaflist_next = NULL;
+    ///////////////////////////////////////////////////
     return node;
 }
 

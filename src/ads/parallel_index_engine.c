@@ -193,6 +193,13 @@ isax_node * insert_to_pRecBuf_ekosmas(parallel_first_buffer_layer_ekosmas *fbl, 
 
     file_position_type *filepointer;
     sax_type *saxpointer;
+    //////////////////////////////////////////////////                      
+    attribute_type *attrpointer;
+    unsigned long long int  attrposition =(unsigned long long int)(*pos) / index->settings->timeseries_size;
+    //printf(" ATTR POSITION: %llu\n",attrposition);
+    //////////////////////////////////////////////////                      
+
+
 
     int current_buffer_number;
     char *cd_s,*cd_p;
@@ -208,12 +215,18 @@ isax_node * insert_to_pRecBuf_ekosmas(parallel_first_buffer_layer_ekosmas *fbl, 
             current_buffer->buffer_size = malloc(sizeof(int)*total_workernumber);
             current_buffer->sax_records = malloc(sizeof(sax_type *)*total_workernumber);
             current_buffer->pos_records = malloc(sizeof(file_position_type *)*total_workernumber);
+            //////////////////////////////////////////////////
+            current_buffer->att_records = malloc(sizeof(attribute_type*)*total_workernumber);
+            //////////////////////////////////////////////////
             for (int i = 0; i < total_workernumber; i++)
             {
                 current_buffer->max_buffer_size[i]=0;
                 current_buffer->buffer_size[i]=0;
                 current_buffer->pos_records[i]=NULL;
                 current_buffer->sax_records[i]=NULL;
+                //////////////////////////////////////////////////
+                current_buffer->att_records[i]=NULL;
+                //////////////////////////////////////////////////
             }
             current_buffer->node = isax_root_node_init(mask,index->settings->initial_leaf_buffer_size, NULL);
             current_buffer->node->is_leaf = 1;
@@ -253,6 +266,11 @@ isax_node * insert_to_pRecBuf_ekosmas(parallel_first_buffer_layer_ekosmas *fbl, 
                                                  current_buffer->max_buffer_size[workernumber]);
             current_buffer->pos_records[workernumber] = malloc(index->settings->position_byte_size*
                                                  current_buffer->max_buffer_size[workernumber]);
+            //////////////////////////////////////////////////
+            current_buffer->att_records[workernumber] = malloc(sizeof(attribute_type)*
+                                                 current_buffer->max_buffer_size[workernumber]);
+            //////////////////////////////////////////////////
+                                                 
         }
         else {
             current_buffer->max_buffer_size[workernumber] *= BUFFER_REALLOCATION_RATE;
@@ -263,11 +281,21 @@ isax_node * insert_to_pRecBuf_ekosmas(parallel_first_buffer_layer_ekosmas *fbl, 
             current_buffer->pos_records[workernumber] = realloc(current_buffer->pos_records[workernumber],
                                            index->settings->position_byte_size *
                                            current_buffer->max_buffer_size[workernumber]);
+            //////////////////////////////////////////////////                      
+            current_buffer->att_records[workernumber] = realloc(current_buffer->att_records[workernumber],
+                                           sizeof(attribute_type)*
+                                           current_buffer->max_buffer_size[workernumber]);
+            //////////////////////////////////////////////////                      
+
 
         }
     }
 
-    if (current_buffer->sax_records[workernumber] == NULL || current_buffer->pos_records[workernumber] == NULL) {
+    if (current_buffer->sax_records[workernumber] == NULL || current_buffer->pos_records[workernumber] == NULL
+            //////////////////////////////////////////////////                      
+            || current_buffer->att_records[workernumber] == NULL
+            //////////////////////////////////////////////////                      
+    ) {
         fprintf(stderr, "error: Could not allocate memory in FBL.");
         return OUT_OF_MEMORY_FAILURE;
     }
@@ -288,10 +316,22 @@ isax_node * insert_to_pRecBuf_ekosmas(parallel_first_buffer_layer_ekosmas *fbl, 
     current_buffer_number = current_buffer->buffer_size[workernumber];
     filepointer = (file_position_type *)current_buffer->pos_records[workernumber];
     saxpointer = (sax_type *)current_buffer->sax_records[workernumber];
+    
+    //////////////////////////////////////////////////                      
+    attrpointer = (attribute_type *)current_buffer->att_records[workernumber];
+    //printf(" s%d ",attrfile[attrposition]);
+    //////////////////////////////////////////////////                      
+
+
     //printf("the work number is %d sax is  %d \n",workernumber,saxpointer[current_buffer_number*index->settings->paa_segments]);
     // EKOSMAS: we could avoid these memcopies and dereferences of pointers by having: i) sax_type *sax_records and ii) file_position_type *pos_records, insted pf **
     memcpy((void *) (&saxpointer[current_buffer_number*index->settings->paa_segments]), (void *) sax, index->settings->sax_byte_size);
     memcpy((void *) (&filepointer[current_buffer_number]), (void *) pos, index->settings->position_byte_size);
+            //////////////////////////////////////////////////                      
+    //fill attribute array's position
+    //attrpointer[current_buffer_number] = attrfile[attrposition];
+    memcpy((void*)&attrpointer[current_buffer_number],(void*)&attrfile[attrposition],sizeof(attribute_type));
+            //////////////////////////////////////////////////                      
 
 
     #ifdef DEBUG

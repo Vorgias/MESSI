@@ -85,6 +85,10 @@ isax_node_buffer * init_node_buffer(int initial_buffer_size) {
     node_buffer->tmp_full_ts_buffer = NULL;
     node_buffer->tmp_partial_position_buffer = NULL;
     node_buffer->tmp_partial_sax_buffer = NULL;   
+    ////////////////////////////////////
+    node_buffer->tmp_partial_attribute_buffer = NULL;
+    node_buffer->partial_attribute_buffer = NULL;
+    ////////////////////////////////////
     return node_buffer;
 }
 
@@ -255,6 +259,10 @@ enum response add_to_node_buffer(isax_node_buffer *node_buffer,
                                                               node_buffer->max_partial_buffer_size);
                 node_buffer->partial_sax_buffer = malloc(sizeof(sax_type*) * 
                                                          node_buffer->max_partial_buffer_size);
+                /////////////////////////
+                node_buffer->partial_attribute_buffer = malloc(sizeof(attribute_type*)*node_buffer->max_partial_buffer_size);
+                /////////////////////////
+                
             }
             else if (node_buffer->max_partial_buffer_size <= node_buffer->partial_buffer_size) {
                 printf("EKOSMAS: Tree buffer is reallocated!!!!! Why???\n"); fflush(stdout);
@@ -269,6 +277,9 @@ enum response add_to_node_buffer(isax_node_buffer *node_buffer,
             }
             node_buffer->partial_position_buffer[node_buffer->partial_buffer_size] = record->position;
             node_buffer->partial_sax_buffer[node_buffer->partial_buffer_size] = record->sax;
+                /////////////////////////
+            node_buffer->partial_attribute_buffer[node_buffer->partial_buffer_size] = record->attr;
+                /////////////////////////
             node_buffer->partial_buffer_size++;
         } 
     }

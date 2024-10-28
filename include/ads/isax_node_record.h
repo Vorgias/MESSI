@@ -18,6 +18,9 @@ typedef struct {
     file_position_type *position;
     enum insertion_mode insertion_mode;
     void *destination;
+    ////////////////////////////////
+    attribute_type * attr;
+    ////////////////////////////////
 } isax_node_record;
 
 

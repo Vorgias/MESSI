@@ -181,6 +181,10 @@ void add_to_queue_data_lf(float *paa, isax_node *node, isax_index *index, float 
 
 
 float * rawfile;
+    //////////////////////////////////////////////
+long int * attrfile;
+    //////////////////////////////////////////////
+
 void pushbottom(localStack *stk, isax_node *node);
 isax_node* poptop(localStack *stk);
 isax_node* popbottom(localStack *stk);

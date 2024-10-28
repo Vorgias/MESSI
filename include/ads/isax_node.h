@@ -80,6 +80,17 @@ typedef struct isax_node {
 
     volatile unsigned char processed;                       // EKOSMAS: ADDED SEPTEMBER 03, 2020
 
+    /////////////////////////////////////
+    struct isax_node * leftmost_leaf;
+    struct isax_node * rightmost_leaf;
+    //if root
+    int numofleafs;
+    //if leaf
+    struct isax_node *leaflist_next;
+    struct isax_node *leaflist_previous;
+    int leaf_id;
+    ////////////////////////////////////
+
 } isax_node;
 
 typedef struct isax_node_single_buffer {

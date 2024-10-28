@@ -761,7 +761,47 @@ void index_creation_pRecBuf_new(const char *ifilename, long int ts_num, isax_ind
 
     check_validity(index, ts_num);
 }
-void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_num, isax_index *index, char embarrassingly_parallel, const char parallelism_in_subtree)
+
+///////////////////////////
+// Inorder traversal
+void inorderTraversal(isax_node* root) {
+  if (root == NULL) return;
+  inorderTraversal(root->left_child);
+  if(root->leftmost_leaf!=NULL && root->rightmost_leaf != NULL){
+    printf("leftest %d rightest %d \n", root->leftmost_leaf->leaf_id,root->rightmost_leaf->leaf_id);
+  }else if(root->leftmost_leaf==NULL && root->rightmost_leaf==NULL){
+    printf("both null isleaf:%d\n",root->is_leaf);
+  }else if(root->leftmost_leaf==NULL){
+    printf("leftest is NULL rightest %d \n", root->rightmost_leaf->leaf_id);
+  }else{
+    printf("leftest is %d rightest is NULL\n", root->leftmost_leaf->leaf_id);
+  }
+  
+  inorderTraversal(root->right_child);
+}
+
+void inorderTraversalCheckForLRpointers(isax_node* root) {
+  if (root == NULL) return;
+  inorderTraversalCheckForLRpointers(root->left_child);
+    
+
+   if(root->leftmost_leaf!=NULL && root->rightmost_leaf != NULL){
+    //printf("leftest %d rightest %d \n", root->leftmost_leaf->leaf_id,root->rightmost_leaf->leaf_id);
+   }else if(root->leftmost_leaf==NULL && root->rightmost_leaf==NULL && root->is_leaf == 0){
+     printf("both null \n");
+   }else if(root->leftmost_leaf==NULL && root->rightmost_leaf==NULL && root->is_leaf == 1){
+
+   }else if(root->leftmost_leaf==NULL){
+    printf("leftest is NULL rightest %d \n", root->rightmost_leaf->leaf_id);
+   }else if(root->rightmost_leaf==NULL){
+    printf("leftest is %d rightest is NULL\n", root->leftmost_leaf->leaf_id);
+   } 
+  
+
+  inorderTraversalCheckForLRpointers(root->right_child);
+}
+///////////////////////////
+void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_num, isax_index *index, char embarrassingly_parallel, const char parallelism_in_subtree,const char*afilename)///////////////////////
 {
     // A. open input file and check its validity
     FILE *ifile;
@@ -782,6 +822,29 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
         fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
         exit(-1);
     }
+    
+    
+    ////////////////////////////////////////////////////
+    FILE *afile;
+    afile = fopen(afilename, "rb");
+    if (afile == NULL)
+    {
+        fprintf(stderr, "File %s not found!\n", afilename);
+        exit(-1);
+    }
+
+    fseek(afile, 0L, SEEK_END);
+    file_position_type sz2 = (file_position_type)ftell(afile);              // sz2 = size in bytes
+    file_position_type total_records2 = sz2 / sizeof(attribute_type); // total bytes / size (in bytes) of one data series
+    fseek(afile, 0L, SEEK_SET);
+
+    if (total_records2 < ts_num)
+    { // check if u have the entire file
+        fprintf(stderr, "File %s has only %llu records!\n", afilename, total_records);
+        exit(-1);
+    }
+    ////////////////////////////////////////////////////
+
 
     // B. Read file in memory (into the "rawfile" array)
     index->settings->raw_filename = malloc(256);
@@ -789,7 +852,22 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
     rawfile = malloc(index->settings->ts_byte_size * ts_num); // CHANGED BY EKOSMAS - 06/05/2020
     COUNT_INPUT_TIME_START
     int read_number = fread(rawfile, sizeof(ts_type), index->settings->timeseries_size * ts_num, ifile);
+    //////////////////////////////////////////////
+    attrfile = malloc(sizeof(attribute_type)*ts_num);
+    fread(attrfile,sizeof(attribute_type),ts_num,afile);
+    //////////////////////////////////////////////
     COUNT_INPUT_TIME_END
+    ///////////////////////////////////
+    printf("attributes:\n");
+    for(int i = 0;i<ts_num;i++){
+        printf(" %ld ",attrfile[i]);
+    }
+    printf("attributes finished\n");
+    if(total_records2 == ts_num){
+        printf("NUMBER OF ATTRIBUTES == NUMBER OF TIMESERIES");
+    }
+    printf("TOTAL RECORDS OF ATTRIBUTES: %d , RECORDS OF TS:%d\n",total_records2,ts_num);
+    ///////////////////////////////////
 
     COUNT_OUTPUT_TIME_START
     COUNT_FILL_REC_BUF_TIME_START
@@ -844,7 +922,32 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
         pthread_join(threadid[i], NULL);
     }
 
+    /////////////////////////////////////
+    int attrvalue;
+    isax_node * temp = NULL;
+    int expectedleafs=0;
+    for(int i = 0; i<index->fbl->number_of_buffers; i++){
+        if(index->fbl->soft_buffers[i].node != NULL && index->fbl->soft_buffers[i].initialized == 1){
+            expectedleafs = index->fbl->soft_buffers[i].node->numofleafs;
+            temp = index->fbl->soft_buffers[i].node->leftmost_leaf;
+            //if(temp == NULL)printf("%d ",i);//root only
+            while(temp!=NULL){              //leaf list
+                printf(" %d_%d/%d ",i,temp->leaf_id,expectedleafs);
+                for(int i = 0; i<temp->buffer->partial_buffer_size;i++){
+                    printf(" %ld ",*temp->buffer->partial_attribute_buffer[i]);
+                }
+                temp = temp->leaflist_next;
+            }
+            //if(index->fbl->soft_buffers[i].node ->left_child != NULL){
+            //    printf("\n-----------------------------------inorder trav----------\n");
+            //    inorderTraversalCheckForLRpointers(index->fbl->soft_buffers[i].node);
+            //    printf("\n-----------------------------------inorder trav----------\n");
+            //}
+        }
 
+    }
+    printf("\n");
+    ////////////////////////////////////
 
 
     free(input_data);
@@ -854,9 +957,9 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
 
     check_validity_ekosmas(index, ts_num);
 }
-void index_creation_pRecBuf_new_ekosmas(const char *ifilename, long int ts_num, isax_index *index)
+void index_creation_pRecBuf_new_ekosmas(const char *ifilename, long int ts_num, isax_index *index,const char*afilename)////////////////////////////////
 {
-    index_creation_pRecBuf_new_ekosmas_func(ifilename, ts_num, index, 0, NO_PARALLELISM_IN_SUBTREE);
+    index_creation_pRecBuf_new_ekosmas_func(ifilename, ts_num, index, 0, NO_PARALLELISM_IN_SUBTREE,afilename);///////////////////////////////////
 }
 
 void index_creation_pRecBuf_new_geopat_func(const char *ifilename, long int ts_num, isax_index *index, char embarrassingly_parallel, int subtree_parallelism , unsigned long chunk_size, int helping,int backoff)
@@ -2657,11 +2760,11 @@ void index_creation_No_pRecBuf_geopat_chunk_size(const char *ifilename, long int
 
 void index_creation_pRecBuf_new_ekosmas_MESSI_with_enhanced_blocking_parallelism(const char *ifilename, long int ts_num, isax_index *index)
 {
-    index_creation_pRecBuf_new_ekosmas_func(ifilename, ts_num, index, 0, BLOCKING_PARALLELISM_IN_SUBTREE);
+    index_creation_pRecBuf_new_ekosmas_func(ifilename, ts_num, index, 0, BLOCKING_PARALLELISM_IN_SUBTREE,"");////////////////////////////// added "" cause i changed the functions signature
 }
 void index_creation_pRecBuf_new_ekosmas_EP(const char *ifilename, long int ts_num, isax_index *index)
 {
-    index_creation_pRecBuf_new_ekosmas_func(ifilename, ts_num, index, 1, NO_PARALLELISM_IN_SUBTREE);
+    index_creation_pRecBuf_new_ekosmas_func(ifilename, ts_num, index, 1, NO_PARALLELISM_IN_SUBTREE,"");//////////////////////////////
 }
 
 void index_creation_pRecBuf_new_ekosmas_lock_free_full_fai_func(const char *ifilename, long int ts_num, isax_index *index, const char parallelism_in_subtree)
@@ -4191,11 +4294,22 @@ inline void tree_index_creation_from_pRecBuf_fai_blocking(void *transferdata)
             {
                 r->sax = (sax_type *)&(((current_fbl_node->sax_records[k]))[i * index->settings->paa_segments]);
                 r->position = (file_position_type *)&((file_position_type *)(current_fbl_node->pos_records[k]))[i];
+                //////////////////////////////////////////////
+                r->attr = (attribute_type*)&(((current_fbl_node->att_records[k]))[i]);
+                //////////////////////////////////////////////
                 r->insertion_mode = NO_TMP | PARTIAL;
                 // Add record to index
                 add_record_to_node_inmemory(index, (isax_node *)current_fbl_node->node, r, 1);
             }
         }
+        ///////////////////////////////
+        int num=0;
+        isax_node* temp = current_fbl_node->node->leftmost_leaf;
+        while(temp!=NULL){
+            temp->leaf_id = num++;
+            temp=temp->leaflist_next;
+        }
+        ///////////////////////////////
     }
 
     free(r);
@@ -4562,6 +4676,10 @@ void *index_creation_pRecBuf_worker_new_ekosmas(void *transferdata)
             {
                 pos = (file_position_type)(i * index->settings->timeseries_size);
                 // memcpy(&(index->sax_cache[i*sax_byte_size]), sax, sax_byte_size);                    // REMOVED BY EKOSMAS - 04/06/2020 // CHANGED BY EKOSMAS - 11/05/2020
+            
+            //////////////////////////////////////////////////                      
+                //have a variable like pos or sax that keeps pointer to the big attribute structure that needs to be built and pass that pointer to the function bellow
+            //////////////////////////////////////////////////                      
 
                 isax_pRecBuf_index_insert_inmemory_ekosmas(
                     index,

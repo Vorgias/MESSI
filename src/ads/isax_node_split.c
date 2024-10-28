@@ -155,7 +155,7 @@ void split_node_inmemory(isax_index *index, isax_node *node)
     
     isax_node * left_child = isax_leaf_node_init(index->settings->initial_leaf_buffer_size, NULL);
     isax_node * right_child = isax_leaf_node_init(index->settings->initial_leaf_buffer_size, NULL);
-    
+
     left_child->is_leaf = 1;
     right_child->is_leaf = 1;
     left_child->parent = node;
@@ -164,6 +164,56 @@ void split_node_inmemory(isax_index *index, isax_node *node)
     node->left_child = left_child;
     node->right_child = right_child;    
     
+    ///////////////////////////////
+  
+    //handling leaf list
+    ((isax_node*)node->right_child)->leaflist_previous = node->left_child;
+    ((isax_node*)node->left_child)->leaflist_next = node->right_child;
+    if(node->leaflist_previous!=NULL){
+        node->leaflist_previous->leaflist_next = (isax_node*)node->left_child;
+        ((isax_node*)node->left_child)->leaflist_previous = node->leaflist_previous;
+        node->leaflist_previous = NULL;
+    }
+    if(node->leaflist_next!=NULL){
+        node->leaflist_next->leaflist_previous = (isax_node*)node->right_child;
+        ((isax_node*)node->right_child)->leaflist_next = node->leaflist_next;
+        node->leaflist_next = NULL;
+    }
+
+
+    //handling leftmost/rightmost_leaf pointers
+    node->leftmost_leaf  = (isax_node*)node->left_child;
+    node->rightmost_leaf = (isax_node*)node->right_child;
+
+    isax_node * temp = (isax_node*)node->parent;
+    if(temp!=NULL){
+        if(temp->right_child == node){
+            while(temp!=NULL && temp->rightmost_leaf==node){
+                temp->rightmost_leaf = node->right_child;
+                temp=temp->parent;
+            }
+        }else if(temp->left_child == node){
+            while(temp!=NULL && temp->leftmost_leaf==node){
+                temp->leftmost_leaf = node->left_child;
+                temp=temp->parent;
+            }
+        }else{
+            printf("the node thats been splited is not parents left or right child\n");
+        }
+    }
+
+    //handle num of leafs that root has under 
+    temp = node;
+    temp->numofleafs = 2;
+    while(temp->parent!=NULL){
+        temp = temp->parent;
+        temp->numofleafs += 1;
+    }
+    
+    
+    ///////////////////////////////
+
+
     // ############ S P L I T   D A T A #############
     // Allocating 1 more position to cover any off-sized allocations happening due to
     // trying to load one more record from a fetched file page which does not exist.
@@ -193,6 +243,9 @@ void split_node_inmemory(isax_index *index, isax_node *node)
             split_buffer[split_buffer_index].sax = node->buffer->partial_sax_buffer[i];
             split_buffer[split_buffer_index].ts = NULL;
             split_buffer[split_buffer_index].position = node->buffer->partial_position_buffer[i];
+            ///////////////////////
+            split_buffer[split_buffer_index].attr = node->buffer->partial_attribute_buffer[i];
+            ///////////////////////
             split_buffer[split_buffer_index].insertion_mode = NO_TMP | PARTIAL;
             split_buffer_index++;
         }

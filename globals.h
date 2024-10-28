@@ -32,7 +32,9 @@
   typedef float ts_type;
   typedef unsigned long long file_position_type;
   typedef unsigned long long root_mask_type;
-
+  ////////////////////////////
+  typedef long int attribute_type;
+  ////////////////////////////
   enum response {OUT_OF_MEMORY_FAILURE, FAILURE, SUCCESS};
   enum insertion_mode {PARTIAL = 1, 
                        TMP = 2, 

@@ -14,16 +14,25 @@
 #include "isax_index.h"
 
 typedef struct fbl_soft_buffer {
+    //////////////////////////////////////
+    attribute_type ** att_records;
+    //////////////////////////////////////
     isax_node *node;
     sax_type ** sax_records;
     file_position_type ** pos_records;
     int initialized; 
     int max_buffer_size;
     int buffer_size;
+
+
+    
 } fbl_soft_buffer;
 
 // EKOSMAS: STRUCT READ
 typedef struct parallel_fbl_soft_buffer {
+    //////////////////////////////////////
+    attribute_type ** att_records;
+    //////////////////////////////////////
     isax_node* volatile node;                       // EKOSMAS: ADDED 'volatile' JUNE 16 2020 - CHANGED JUNE 24 2020
     sax_type ** sax_records;
     file_position_type ** pos_records;
@@ -31,9 +40,13 @@ typedef struct parallel_fbl_soft_buffer {
     int *max_buffer_size;                           // EKOSMAS: Why is this a pointer?
     int *buffer_size;                               // EKOSMAS: Why is this a pointer?
     volatile int finished;                          // EKOSMAS: ADDED 'volatile'
+
 } parallel_fbl_soft_buffer;
 
 typedef struct parallel_fbl_soft_buffer_ekosmas {
+    //////////////////////////////////////
+    attribute_type ** att_records;
+    //////////////////////////////////////
     isax_node* volatile node;                       // EKOSMAS: ADDED 'volatile' JUNE 16 2020 - CHANGED JUNE 24 2020
     sax_type **sax_records;
     file_position_type **pos_records;
@@ -41,6 +54,7 @@ typedef struct parallel_fbl_soft_buffer_ekosmas {
     int *max_buffer_size;                           // EKOSMAS: Why is this a pointer?
     int *buffer_size;                               // EKOSMAS: Why is this a pointer?
     volatile int finished;                          // EKOSMAS: ADDED 'volatile'
+
 } parallel_fbl_soft_buffer_ekosmas;
 
 

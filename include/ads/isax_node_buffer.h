@@ -25,7 +25,11 @@ typedef struct isax_node_buffer {
     // Partial data:
     sax_type **partial_sax_buffer;
     file_position_type **partial_position_buffer;
+    /////////////////////////
+    attribute_type ** partial_attribute_buffer;
+    /////////////////////////
     
+
     // TMP Buffers (stuff coming from splits and loads)
     // Full data:
     sax_type **tmp_full_sax_buffer;
@@ -35,7 +39,10 @@ typedef struct isax_node_buffer {
     // Partial data:
     sax_type **tmp_partial_sax_buffer;
     file_position_type **tmp_partial_position_buffer;
-    
+    /////////////////////////
+    attribute_type**tmp_partial_attribute_buffer;
+    /////////////////////////
+
     
     int full_buffer_size;
     int max_full_buffer_size;

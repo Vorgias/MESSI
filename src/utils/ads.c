@@ -51,6 +51,7 @@ Copyright (C) 2011-2014 University of Trento.\n\
 int main (int argc, char **argv)
 {
     static char * dataset = "/home/ekosmas/datasets/dataset10GB.bin";
+    static char * attributes = "";///////////////////////////////////
     static char * dataset_output = "";
     static char * dataset_compare = "";
     static char * queries = "/home/botao/document/";
@@ -128,6 +129,7 @@ int main (int argc, char **argv)
             {"dataset-output",required_argument,0,'7'},
             {"chunk-size",required_argument,0,'8'},
             {"fai-step",required_argument,0,'9'},
+            {"attributes", required_argument, 0, 'A'},/////////////////////////////////////////////
             {NULL, 0, NULL, 0}
         };
 
@@ -325,6 +327,9 @@ int main (int argc, char **argv)
             case 'v':
                 inmemory_flag = 1;
                 break;
+            case 'A':
+                attributes = optarg;///////////////////////////////
+                break;
             default:
                 exit(-1);
                 break;
@@ -372,7 +377,7 @@ int main (int argc, char **argv)
 
         if (function_type == 9990){                                     // ekosmas's version according to botao's
             // PHASE 1: Fill in of Receive Bufers and PHASE 2: Index Creation
-            index_creation_pRecBuf_new_ekosmas(dataset, dataset_size, idx);
+            index_creation_pRecBuf_new_ekosmas(dataset, dataset_size, idx,attributes);////////////////////////////////
 
             // PHASE 3: Query Answering
             isax_query_binary_file_traditional_ekosmas(queries, queries_size, idx, minimum_distance, &exact_search_ParISnew_inmemory_hybrid_ekosmas);

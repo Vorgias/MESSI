@@ -68,10 +68,35 @@ query_result  approximate_search_inmemory_pRecBuf(ts_type *ts, ts_type *paa, isa
     return result;
 }
 
+//////////////////////////////////////
+int leafContainsAttr(isax_node* root , int key){
+    for(int i = 0; i<root->buffer->partial_buffer_size;i++){
+        if(*(root->buffer->partial_attribute_buffer[i])==key)return 1;
+    }
+    return 0;
+}
+
+int evalSubtree(isax_node* root , int key){
+    
+    if(root->is_leaf)return leafContainsAttr(root,key);
+    isax_node * temp = root->leftmost_leaf;
+    int max = root->rightmost_leaf->leaf_id;
+    printf("starting from : %d to %d\n",temp->leaf_id,max);
+    while(temp!=NULL && temp->leaf_id <= max){
+        if(leafContainsAttr(temp,key))return 1;
+        temp = temp->leaflist_next;
+    }
+    return 0;
+
+}
+//////////////////////////////////////
 query_result  approximate_search_inmemory_pRecBuf_ekosmas(ts_type *ts, ts_type *paa, isax_index *index) 
 {
+    /////////////////////////////
+    int key = 1;
+    /////////////////////////////
     query_result result;
-
+    
     sax_type *sax = malloc(sizeof(sax_type) * index->settings->paa_segments);
     sax_from_paa(paa, sax, index->settings->paa_segments,
                  index->settings->sax_alphabet_cardinality,
@@ -91,14 +116,32 @@ query_result  approximate_search_inmemory_pRecBuf_ekosmas(ts_type *ts, ts_type *
 
             if(sax[node->split_data->splitpoint] & mask)
             {
+                //////////////////////////////////
+                if(evalSubtree(node->right_child,key)){
+                //////////////////////////////////
                 node = node->right_child;
+                ///////////////
+                }else{
+                    //printf("wanted right went left\n");
+                    node = node->left_child;
+                }
+                ///////////////
             }
             else
             {
+                //////////////////////////////////
+                if(evalSubtree(node->left_child,key)){
+                //////////////////////////////////
                 node = node->left_child;
+                ///////////////////
+                }else{
+                    //printf("wanted left went right");
+                    node = node->right_child;
+                }
+                ///////////////////
             }
         }
-        result.distance = calculate_node_distance_inmemory_ekosmas(index, node, ts, FLT_MAX);           // caclulate initial BSF
+        result.distance = calculate_node_distance_inmemory_with_attribute(index, node, ts, FLT_MAX,key);           // caclulate initial BSF
         result.node = node;
     }
     else {
@@ -247,6 +290,27 @@ float calculate_node_distance_inmemory (isax_index *index, isax_node *node, ts_t
     
     return bsf;
 }
+////////////////////////////////////
+float calculate_node_distance_inmemory_with_attribute (isax_index *index, isax_node *node, ts_type *query, float bsf,int key) 
+{
+    // If node has buffered data
+    if (node->buffer != NULL) 
+    {   
+        for (int i=0; i<node->buffer->partial_buffer_size; i++) {
+            if(*node->buffer->partial_attribute_buffer[i] == key){
+            float dist = ts_euclidean_distance_SIMD(query, &(rawfile[*node->buffer->partial_position_buffer[i]]), index->settings->timeseries_size, bsf);
+
+            if (dist < bsf) {
+                bsf = dist;
+
+            }
+            }
+        }
+    }
+    
+    return bsf;
+}
+/////////////////////////////////////
 float calculate_node_distance_inmemory_ekosmas (isax_index *index, isax_node *node, ts_type *query, float bsf) 
 {
     // If node has buffered data

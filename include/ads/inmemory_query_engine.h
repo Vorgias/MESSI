@@ -17,6 +17,9 @@
 
 
 float calculate_node_distance_inmemory (isax_index *index, isax_node *node, ts_type *query , float bsf);
+///////////////////////////////////
+float calculate_node_distance_inmemory_with_attribute (isax_index *index, isax_node *node, ts_type *query, float bsf,int key);
+///////////////////////////////////
 float calculate_node_distance_inmemory_ekosmas (isax_index *index, isax_node *node, ts_type *query , float bsf);
 float calculate_node_distance_inmemory_ekosmas_lf (isax_index *index, isax_node *node, ts_type *query, float bsf, const char parallelism_in_subtree);
 float calculate_node_distance_inmemory_geopat_lf (isax_index *index, isax_node_single_buffer *node, ts_type *query, float bsf, const char parallelism_in_subtree) ;
@@ -43,4 +46,8 @@ struct args_in
 };
 
 float * rawfile;
+    //////////////////////////////////////////////
+long int*attrfile;
+    //////////////////////////////////////////////
+
 #endif
