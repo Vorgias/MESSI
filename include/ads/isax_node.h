@@ -15,6 +15,7 @@ struct isax_node;
 #include "../../globals.h"
 #include "isax_node_record.h"
 #include "isax_node_buffer.h"
+#include "kdtree.h"
 
 typedef struct isax_node_split_data {
     int splitpoint;
@@ -35,6 +36,17 @@ typedef struct update {
     STATE state ;
     InfoRecord *info; 
 } Update;
+
+///////////////////////////////
+typedef struct skipSearch_node{
+    attribute_type * attribute;
+    int searched;
+    int supports_predicate;
+    struct isax_node * lastSearchedInARow;
+    struct skipSearch_node* next;//in same node different query
+}skipSearch_node;
+///////////////////////////////
+
 
 typedef struct isax_node {
     // General
@@ -89,6 +101,11 @@ typedef struct isax_node {
     struct isax_node *leaflist_next;
     struct isax_node *leaflist_previous;
     int leaf_id;
+    struct kdNode * kdtree;
+    //skiplist 
+    struct isax_node * nextInSkiplist;
+    int supports_pred;
+    attribute_type* attribute_when_searchedFirst;
     ////////////////////////////////////
 
 } isax_node;

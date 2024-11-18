@@ -1,0 +1,6 @@
+Dataset [/home1/public/vorgias/dataset/datasetfotfirsttest1G] with size [1048576]
+Threads [40]
+Read Block Length [20000]
+ts-group-length [64]
+Running version [9990]
+Backoff set to [-1]

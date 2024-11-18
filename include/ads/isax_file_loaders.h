@@ -36,6 +36,12 @@ void isax_query_binary_file_traditional(const char *ifilename, int q_num, isax_i
 void isax_query_binary_file_traditional_ekosmas(const char *ifilename, int q_num, isax_index *index,
                             float minimum_distance,
                             query_result (*search_function)(ts_type*, ts_type*, isax_index*,node_list*, float));
+//////////////////////////////////////////
+void isax_query_binary_file_traditional_vorgias(const char *ifilename,const char *afilename, int q_num, isax_index *index,
+                            float minimum_distance,
+                            query_result (*search_function)(ts_type*, ts_type*, isax_index*,node_list*, float,attribute_type* attribute));
+//////////////////////////////////////////
+
 void isax_query_binary_file_traditional_ekosmas_EP(const char *ifilename, int q_num, isax_index *index,
                             float minimum_distance,
                             query_result (*search_function)(ts_type*, ts_type*, isax_index*,node_list*, float));

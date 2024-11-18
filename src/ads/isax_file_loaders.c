@@ -139,6 +139,159 @@ void isax_query_binary_file_traditional(const char *ifilename, int q_num, isax_i
     COUNT_INPUT_TIME_END
 }
 
+///////////////////////////////////////////////
+void inorderNullify(isax_node * node){
+    if( node == NULL)return;
+    node->supports_pred =0;
+    
+    node->attribute_when_searchedFirst=-1;
+    inorderNullify( node->right_child);
+    inorderNullify( node->left_child);
+}
+void cleanup_skipSearchlists(isax_index *index){
+    isax_node * temp = NULL;
+    for(int i = 0; i<index->fbl->number_of_buffers; i++){
+        if(1 && index->fbl->soft_buffers[i].initialized == 1){
+            printf(" %d AAAAAA",i);
+            inorderNullify(index->fbl->soft_buffers[i].node);
+            // temp = index->fbl->soft_buffers[i].node->leftmost_leaf;
+            // if(temp == NULL){
+            //     free(index->fbl->soft_buffers[i].node->skipSearch_list);
+            //     index->fbl->soft_buffers[i].node->skipSearch_list = NULL;
+            //     index->fbl->soft_buffers[i].node->supports_pred =0;
+            //     continue;
+            // }
+            // while(temp!=NULL){              //leaf list
+            //     free(temp->skipSearch_list);
+            //     temp->skipSearch_list = NULL;
+            //     temp->supports_pred =0;
+            //     temp = temp->leaflist_next;
+            // }
+        }
+    }
+}
+void isax_query_binary_file_traditional_vorgias(const char *ifilename,const char *afilename, int q_num, isax_index *index,
+                            float minimum_distance,
+                            query_result (*search_function)(ts_type*, ts_type*, isax_index*,node_list*, float,attribute_type* attribute))
+{
+    COUNT_INPUT_TIME_START
+    fprintf(stderr, ">>> Performing queries in file: %s\n", ifilename);
+    FILE * ifile;
+    ifile = fopen (ifilename,"rb");
+    if (ifile == NULL) {
+        fprintf(stderr, "File %s not found!\n", ifilename);
+        exit(-1);
+    }
+
+    fseek(ifile, 0L, SEEK_END);
+    file_position_type sz = (file_position_type) ftell(ifile);
+    file_position_type total_records = sz/index->settings->ts_byte_size;
+    fseek(ifile, 0L, SEEK_SET);
+    if (total_records < q_num) {
+        fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
+        exit(-1);
+    }
+///////////////////////////
+    FILE * afile;
+    afile = fopen (afilename,"rb");
+    if (afile == NULL) {
+        fprintf(stderr, "File %s not found!\n", afilename);
+        exit(-1);
+    }
+
+    fseek(afile, 0L, SEEK_END);
+    file_position_type sz2 = (file_position_type) ftell(afile);
+    file_position_type total_records2 = sz2/(sizeof(attribute_type)*index->settings->attribute_size);
+    fseek(afile, 0L, SEEK_SET);
+    if (total_records2 < q_num) {
+        fprintf(stderr, "File %s has only %llu records!\n", afilename, total_records2);
+        exit(-1);
+    }
+    if(total_records2== q_num){
+        printf("attributes number == query number\n");
+    }
+
+    //////////////////
+    int q_loaded = 0; 
+    ts_type * ts = malloc(sizeof(ts_type) * index->settings->timeseries_size);
+    attribute_type * attribute = malloc(sizeof(attribute_type)*index->settings->attribute_size);/////////////////////
+    COUNT_INPUT_TIME_END
+
+    COUNT_OUTPUT_TIME_START
+    COUNT_QUERY_ANSWERING_TIME_START
+    ts_type * paa = malloc(sizeof(ts_type) * index->settings->paa_segments);
+
+    node_list nodelist;
+    nodelist.nlist = malloc(sizeof(isax_node*)*pow(2, index->settings->paa_segments));
+    nodelist.node_amount = 0;
+
+    // maintain root nodes into an array, so that it is possible to execute FAI
+    for (int j = 0; j < index->fbl->number_of_buffers; j++ ) {
+
+        parallel_fbl_soft_buffer_ekosmas *current_fbl_node = &((parallel_first_buffer_layer_ekosmas*)(index->fbl))->soft_buffers[j];
+        if (!current_fbl_node->initialized) {
+            continue;
+        }
+
+        nodelist.nlist[nodelist.node_amount] = current_fbl_node->node;
+        if (!current_fbl_node->node) {
+            printf ("Error: node is NULL!!!!\t"); fflush(stdout);
+            getchar();
+        }
+        nodelist.node_amount++;
+                    
+    }
+
+    while (q_loaded < q_num)
+    {
+        COUNT_QUERY_ANSWERING_TIME_END
+        COUNT_OUTPUT_TIME_END
+
+        COUNT_INPUT_TIME_START
+        fread(ts, sizeof(ts_type),index->settings->timeseries_size,ifile);
+        fread(attribute,sizeof(attribute_type),index->settings->attribute_size,afile);//////////////////
+        // for(int i=0;i<index->settings->attribute_size;i++){
+        //     attribute[i]=(attribute_type)1;
+        // }//testing
+        COUNT_INPUT_TIME_END
+
+        COUNT_OUTPUT_TIME_START
+        COUNT_QUERY_ANSWERING_TIME_START
+
+        // Parse ts and make PAA representation
+        paa_from_ts(ts, paa, index->settings->paa_segments,
+                    index->settings->ts_values_per_paa_segment);
+        //printf("predicate : %d\n",*attribute);///////////////////
+        //cleanup_skipSearchlists(index);////////////////////////////////
+        printf("\n--------------------------------------------------------------\n");
+        for(int i=0;i<index->settings->attribute_size;i++){
+            printf("\nattribute: (%d) %d\n",i,attribute[i]);
+        }
+        query_result result = search_function(ts, paa, index, &nodelist, minimum_distance,attribute);//////////////
+        
+        q_loaded++;
+
+        COUNT_QUERY_ANSWERING_TIME_END
+        COUNT_OUTPUT_TIME_END
+        PRINT_QUERY_STATS(result.distance);
+        COUNT_OUTPUT_TIME_START
+        COUNT_QUERY_ANSWERING_TIME_START
+        printf("\n--------------------------------------------------------------\n");
+    }
+    
+    free(nodelist.nlist);
+    free(paa);
+
+    COUNT_QUERY_ANSWERING_TIME_END
+    COUNT_OUTPUT_TIME_END
+
+    COUNT_INPUT_TIME_START
+    free(ts);
+    fclose(ifile);
+    fprintf(stderr, ">>> Finished querying.\n");
+    COUNT_INPUT_TIME_END
+}
+///////////////////////////////////////////////
 // ekosmas version
 void isax_query_binary_file_traditional_ekosmas(const char *ifilename, int q_num, isax_index *index,
                             float minimum_distance,

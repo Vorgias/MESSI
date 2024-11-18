@@ -24,7 +24,9 @@
 #include "ads/isax_node_split.h"
 
 void backoff_delay(unsigned long backoff);
-
+///////////////////////////////////////////////////
+ void tree_index_creation_from_pRecBuf_fai_blocking(void *transferdata);
+//////////////////////////////////////////////////
 void index_creation_pRecBuf_new(const char *ifilename, long int ts_num, isax_index *index);
 void index_creation_pRecBuf_new_ekosmas(const char *ifilename, long int ts_num, isax_index *index,const char*afilename);//////////////////////////////////////
 void index_creation_pRecBuf_new_ekosmas_MESSI_with_enhanced_blocking_parallelism(const char *ifilename, long int ts_num, isax_index *index);

@@ -157,7 +157,13 @@ am_lib_libads_a_OBJECTS =  \
 	src/ads/lib_libads_a-prioq.$(OBJEXT) \
 	src/ads/lib_libads_a-common.$(OBJEXT) \
 	src/ads/gc/lib_libads_a-gc.$(OBJEXT) \
-	src/ads/gc/lib_libads_a-ptst.$(OBJEXT)
+	src/ads/gc/lib_libads_a-ptst.$(OBJEXT) \
+	src/kdtreelib/lib_libads_a-kdtree_cartesian.$(OBJEXT) \
+	src/kdtreelib/lib_libads_a-kdtree_common.$(OBJEXT) \
+	src/kdtreelib/lib_libads_a-kdtree_spherical.$(OBJEXT) \
+	src/kdtreelib/lib_libads_a-pmergesort.$(OBJEXT) \
+	src/kdtreelib/lib_libads_a-pqueue.$(OBJEXT) \
+	src/kdtreelib/lib_libads_a-qsort.$(OBJEXT)
 lib_libads_a_OBJECTS = $(am_lib_libads_a_OBJECTS)
 PROGRAMS = $(bin_PROGRAMS)
 am_bin_ads_OBJECTS = src/utils/bin_ads-ads.$(OBJEXT)
@@ -246,18 +252,17 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home1/public/vorgias/MESSI/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home1/public/vorgias/MESSI2/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home1/public/vorgias/MESSI/missing autoconf
-AUTOHEADER = ${SHELL} /home1/public/vorgias/MESSI/missing autoheader
-AUTOMAKE = ${SHELL} /home1/public/vorgias/MESSI/missing automake-1.15
+AUTOCONF = ${SHELL} /home1/public/vorgias/MESSI2/missing autoconf
+AUTOHEADER = ${SHELL} /home1/public/vorgias/MESSI2/missing autoheader
+AUTOMAKE = ${SHELL} /home1/public/vorgias/MESSI2/missing automake-1.15
 AWK = gawk
-CC = gcc
+CC = gcc -std=gnu11
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
-CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
@@ -265,9 +270,7 @@ DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
 EXEEXT = 
-GREP = /usr/bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -277,7 +280,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home1/public/vorgias/MESSI/missing makeinfo
+MAKEINFO = ${SHELL} /home1/public/vorgias/MESSI2/missing makeinfo
 MKDIR_P = /usr/bin/mkdir -p
 OBJEXT = o
 PACKAGE = libads
@@ -293,10 +296,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = 
 VERSION = 1.3
-abs_builddir = /home1/public/vorgias/MESSI
-abs_srcdir = /home1/public/vorgias/MESSI
-abs_top_builddir = /home1/public/vorgias/MESSI
-abs_top_srcdir = /home1/public/vorgias/MESSI
+abs_builddir = /home1/public/vorgias/MESSI2
+abs_srcdir = /home1/public/vorgias/MESSI2
+abs_top_builddir = /home1/public/vorgias/MESSI2
+abs_top_srcdir = /home1/public/vorgias/MESSI2
 ac_ct_AR = ar
 ac_ct_CC = gcc
 am__include = include
@@ -316,7 +319,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home1/public/vorgias/MESSI/install-sh
+install_sh = ${SHELL} /home1/public/vorgias/MESSI2/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -341,7 +344,7 @@ AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 lib_LIBRARIES = lib/libads.a
 # lib_libads_a_SOURCES = src/ads/isax_file_loaders.c src/ads/isax_first_buffer_layer.c src/ads/isax_index.c src/ads/isax_node.c src/ads/isax_node_buffer.c src/ads/isax_node_record.c src/ads/isax_node_split.c src/ads/isax_query_engine.c src/ads/isax_visualize_index.c src/ads/pqueue.c src/ads/sax/sax.c src/ads/sax/ts.c src/ads/inmemory_query_engine.c src/ads/parallel_inmemory_query_engine.c src/ads/inmemory_index_engine.c src/ads/parallel_index_engine.c src/ads/parallel_query_engine.c src/ads/inmemory_topk_engine.c
-lib_libads_a_SOURCES = src/ads/isax_file_loaders.c src/ads/isax_first_buffer_layer.c src/ads/isax_index.c src/ads/isax_node.c src/ads/isax_node_buffer.c src/ads/isax_node_record.c src/ads/isax_node_split.c src/ads/isax_visualize_index.c src/ads/pqueue.c src/ads/sax/sax.c src/ads/sax/ts.c src/ads/inmemory_query_engine.c src/ads/parallel_inmemory_query_engine.c src/ads/inmemory_index_engine.c src/ads/parallel_index_engine.c src/ads/prioq.c src/ads/common.c src/ads/gc/gc.c src/ads/gc/ptst.c 
+lib_libads_a_SOURCES = src/ads/isax_file_loaders.c src/ads/isax_first_buffer_layer.c src/ads/isax_index.c src/ads/isax_node.c src/ads/isax_node_buffer.c src/ads/isax_node_record.c src/ads/isax_node_split.c src/ads/isax_visualize_index.c src/ads/pqueue.c src/ads/sax/sax.c src/ads/sax/ts.c src/ads/inmemory_query_engine.c src/ads/parallel_inmemory_query_engine.c src/ads/inmemory_index_engine.c src/ads/parallel_index_engine.c src/ads/prioq.c src/ads/common.c src/ads/gc/gc.c src/ads/gc/ptst.c src/kdtreelib/kdtree_cartesian.c src/kdtreelib/kdtree_common.c src/kdtreelib/kdtree_spherical.c src/kdtreelib/pmergesort.c src/kdtreelib/pqueue.c src/kdtreelib/qsort.c 
 lib_libads_a_CFLAGS = -I/opt/local/include -Iinclude/ -march=native -mavx -mavx2 -msse3 -fopenmp -DINTEL -DCACHE_LINE_SIZE=`getconf LEVEL1_DCACHE_LINESIZE` -DMCX16 -std=gnu99 -fcommon
 
 # bin_query_ads_index_SOURCES = src/utils/query-ads-index.c
@@ -497,6 +500,30 @@ src/ads/gc/lib_libads_a-gc.$(OBJEXT): src/ads/gc/$(am__dirstamp) \
 	src/ads/gc/$(DEPDIR)/$(am__dirstamp)
 src/ads/gc/lib_libads_a-ptst.$(OBJEXT): src/ads/gc/$(am__dirstamp) \
 	src/ads/gc/$(DEPDIR)/$(am__dirstamp)
+src/kdtreelib/$(am__dirstamp):
+	@$(MKDIR_P) src/kdtreelib
+	@: > src/kdtreelib/$(am__dirstamp)
+src/kdtreelib/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/kdtreelib/$(DEPDIR)
+	@: > src/kdtreelib/$(DEPDIR)/$(am__dirstamp)
+src/kdtreelib/lib_libads_a-kdtree_cartesian.$(OBJEXT):  \
+	src/kdtreelib/$(am__dirstamp) \
+	src/kdtreelib/$(DEPDIR)/$(am__dirstamp)
+src/kdtreelib/lib_libads_a-kdtree_common.$(OBJEXT):  \
+	src/kdtreelib/$(am__dirstamp) \
+	src/kdtreelib/$(DEPDIR)/$(am__dirstamp)
+src/kdtreelib/lib_libads_a-kdtree_spherical.$(OBJEXT):  \
+	src/kdtreelib/$(am__dirstamp) \
+	src/kdtreelib/$(DEPDIR)/$(am__dirstamp)
+src/kdtreelib/lib_libads_a-pmergesort.$(OBJEXT):  \
+	src/kdtreelib/$(am__dirstamp) \
+	src/kdtreelib/$(DEPDIR)/$(am__dirstamp)
+src/kdtreelib/lib_libads_a-pqueue.$(OBJEXT):  \
+	src/kdtreelib/$(am__dirstamp) \
+	src/kdtreelib/$(DEPDIR)/$(am__dirstamp)
+src/kdtreelib/lib_libads_a-qsort.$(OBJEXT):  \
+	src/kdtreelib/$(am__dirstamp) \
+	src/kdtreelib/$(DEPDIR)/$(am__dirstamp)
 lib/$(am__dirstamp):
 	@$(MKDIR_P) lib
 	@: > lib/$(am__dirstamp)
@@ -568,6 +595,7 @@ mostlyclean-compile:
 	-rm -f src/ads/*.$(OBJEXT)
 	-rm -f src/ads/gc/*.$(OBJEXT)
 	-rm -f src/ads/sax/*.$(OBJEXT)
+	-rm -f src/kdtreelib/*.$(OBJEXT)
 	-rm -f src/utils/*.$(OBJEXT)
 
 distclean-compile:
@@ -592,6 +620,12 @@ include src/ads/gc/$(DEPDIR)/lib_libads_a-gc.Po
 include src/ads/gc/$(DEPDIR)/lib_libads_a-ptst.Po
 include src/ads/sax/$(DEPDIR)/lib_libads_a-sax.Po
 include src/ads/sax/$(DEPDIR)/lib_libads_a-ts.Po
+include src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_cartesian.Po
+include src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_common.Po
+include src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_spherical.Po
+include src/kdtreelib/$(DEPDIR)/lib_libads_a-pmergesort.Po
+include src/kdtreelib/$(DEPDIR)/lib_libads_a-pqueue.Po
+include src/kdtreelib/$(DEPDIR)/lib_libads_a-qsort.Po
 include src/utils/$(DEPDIR)/bin_ads-ads.Po
 
 .c.o:
@@ -876,6 +910,90 @@ src/ads/gc/lib_libads_a-ptst.obj: src/ads/gc/ptst.c
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/ads/gc/lib_libads_a-ptst.obj `if test -f 'src/ads/gc/ptst.c'; then $(CYGPATH_W) 'src/ads/gc/ptst.c'; else $(CYGPATH_W) '$(srcdir)/src/ads/gc/ptst.c'; fi`
 
+src/kdtreelib/lib_libads_a-kdtree_cartesian.o: src/kdtreelib/kdtree_cartesian.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-kdtree_cartesian.o -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_cartesian.Tpo -c -o src/kdtreelib/lib_libads_a-kdtree_cartesian.o `test -f 'src/kdtreelib/kdtree_cartesian.c' || echo '$(srcdir)/'`src/kdtreelib/kdtree_cartesian.c
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_cartesian.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_cartesian.Po
+#	$(AM_V_CC)source='src/kdtreelib/kdtree_cartesian.c' object='src/kdtreelib/lib_libads_a-kdtree_cartesian.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-kdtree_cartesian.o `test -f 'src/kdtreelib/kdtree_cartesian.c' || echo '$(srcdir)/'`src/kdtreelib/kdtree_cartesian.c
+
+src/kdtreelib/lib_libads_a-kdtree_cartesian.obj: src/kdtreelib/kdtree_cartesian.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-kdtree_cartesian.obj -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_cartesian.Tpo -c -o src/kdtreelib/lib_libads_a-kdtree_cartesian.obj `if test -f 'src/kdtreelib/kdtree_cartesian.c'; then $(CYGPATH_W) 'src/kdtreelib/kdtree_cartesian.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/kdtree_cartesian.c'; fi`
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_cartesian.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_cartesian.Po
+#	$(AM_V_CC)source='src/kdtreelib/kdtree_cartesian.c' object='src/kdtreelib/lib_libads_a-kdtree_cartesian.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-kdtree_cartesian.obj `if test -f 'src/kdtreelib/kdtree_cartesian.c'; then $(CYGPATH_W) 'src/kdtreelib/kdtree_cartesian.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/kdtree_cartesian.c'; fi`
+
+src/kdtreelib/lib_libads_a-kdtree_common.o: src/kdtreelib/kdtree_common.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-kdtree_common.o -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_common.Tpo -c -o src/kdtreelib/lib_libads_a-kdtree_common.o `test -f 'src/kdtreelib/kdtree_common.c' || echo '$(srcdir)/'`src/kdtreelib/kdtree_common.c
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_common.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_common.Po
+#	$(AM_V_CC)source='src/kdtreelib/kdtree_common.c' object='src/kdtreelib/lib_libads_a-kdtree_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-kdtree_common.o `test -f 'src/kdtreelib/kdtree_common.c' || echo '$(srcdir)/'`src/kdtreelib/kdtree_common.c
+
+src/kdtreelib/lib_libads_a-kdtree_common.obj: src/kdtreelib/kdtree_common.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-kdtree_common.obj -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_common.Tpo -c -o src/kdtreelib/lib_libads_a-kdtree_common.obj `if test -f 'src/kdtreelib/kdtree_common.c'; then $(CYGPATH_W) 'src/kdtreelib/kdtree_common.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/kdtree_common.c'; fi`
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_common.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_common.Po
+#	$(AM_V_CC)source='src/kdtreelib/kdtree_common.c' object='src/kdtreelib/lib_libads_a-kdtree_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-kdtree_common.obj `if test -f 'src/kdtreelib/kdtree_common.c'; then $(CYGPATH_W) 'src/kdtreelib/kdtree_common.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/kdtree_common.c'; fi`
+
+src/kdtreelib/lib_libads_a-kdtree_spherical.o: src/kdtreelib/kdtree_spherical.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-kdtree_spherical.o -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_spherical.Tpo -c -o src/kdtreelib/lib_libads_a-kdtree_spherical.o `test -f 'src/kdtreelib/kdtree_spherical.c' || echo '$(srcdir)/'`src/kdtreelib/kdtree_spherical.c
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_spherical.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_spherical.Po
+#	$(AM_V_CC)source='src/kdtreelib/kdtree_spherical.c' object='src/kdtreelib/lib_libads_a-kdtree_spherical.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-kdtree_spherical.o `test -f 'src/kdtreelib/kdtree_spherical.c' || echo '$(srcdir)/'`src/kdtreelib/kdtree_spherical.c
+
+src/kdtreelib/lib_libads_a-kdtree_spherical.obj: src/kdtreelib/kdtree_spherical.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-kdtree_spherical.obj -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_spherical.Tpo -c -o src/kdtreelib/lib_libads_a-kdtree_spherical.obj `if test -f 'src/kdtreelib/kdtree_spherical.c'; then $(CYGPATH_W) 'src/kdtreelib/kdtree_spherical.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/kdtree_spherical.c'; fi`
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_spherical.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-kdtree_spherical.Po
+#	$(AM_V_CC)source='src/kdtreelib/kdtree_spherical.c' object='src/kdtreelib/lib_libads_a-kdtree_spherical.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-kdtree_spherical.obj `if test -f 'src/kdtreelib/kdtree_spherical.c'; then $(CYGPATH_W) 'src/kdtreelib/kdtree_spherical.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/kdtree_spherical.c'; fi`
+
+src/kdtreelib/lib_libads_a-pmergesort.o: src/kdtreelib/pmergesort.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-pmergesort.o -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-pmergesort.Tpo -c -o src/kdtreelib/lib_libads_a-pmergesort.o `test -f 'src/kdtreelib/pmergesort.c' || echo '$(srcdir)/'`src/kdtreelib/pmergesort.c
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-pmergesort.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-pmergesort.Po
+#	$(AM_V_CC)source='src/kdtreelib/pmergesort.c' object='src/kdtreelib/lib_libads_a-pmergesort.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-pmergesort.o `test -f 'src/kdtreelib/pmergesort.c' || echo '$(srcdir)/'`src/kdtreelib/pmergesort.c
+
+src/kdtreelib/lib_libads_a-pmergesort.obj: src/kdtreelib/pmergesort.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-pmergesort.obj -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-pmergesort.Tpo -c -o src/kdtreelib/lib_libads_a-pmergesort.obj `if test -f 'src/kdtreelib/pmergesort.c'; then $(CYGPATH_W) 'src/kdtreelib/pmergesort.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/pmergesort.c'; fi`
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-pmergesort.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-pmergesort.Po
+#	$(AM_V_CC)source='src/kdtreelib/pmergesort.c' object='src/kdtreelib/lib_libads_a-pmergesort.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-pmergesort.obj `if test -f 'src/kdtreelib/pmergesort.c'; then $(CYGPATH_W) 'src/kdtreelib/pmergesort.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/pmergesort.c'; fi`
+
+src/kdtreelib/lib_libads_a-pqueue.o: src/kdtreelib/pqueue.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-pqueue.o -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-pqueue.Tpo -c -o src/kdtreelib/lib_libads_a-pqueue.o `test -f 'src/kdtreelib/pqueue.c' || echo '$(srcdir)/'`src/kdtreelib/pqueue.c
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-pqueue.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-pqueue.Po
+#	$(AM_V_CC)source='src/kdtreelib/pqueue.c' object='src/kdtreelib/lib_libads_a-pqueue.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-pqueue.o `test -f 'src/kdtreelib/pqueue.c' || echo '$(srcdir)/'`src/kdtreelib/pqueue.c
+
+src/kdtreelib/lib_libads_a-pqueue.obj: src/kdtreelib/pqueue.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-pqueue.obj -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-pqueue.Tpo -c -o src/kdtreelib/lib_libads_a-pqueue.obj `if test -f 'src/kdtreelib/pqueue.c'; then $(CYGPATH_W) 'src/kdtreelib/pqueue.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/pqueue.c'; fi`
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-pqueue.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-pqueue.Po
+#	$(AM_V_CC)source='src/kdtreelib/pqueue.c' object='src/kdtreelib/lib_libads_a-pqueue.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-pqueue.obj `if test -f 'src/kdtreelib/pqueue.c'; then $(CYGPATH_W) 'src/kdtreelib/pqueue.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/pqueue.c'; fi`
+
+src/kdtreelib/lib_libads_a-qsort.o: src/kdtreelib/qsort.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-qsort.o -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-qsort.Tpo -c -o src/kdtreelib/lib_libads_a-qsort.o `test -f 'src/kdtreelib/qsort.c' || echo '$(srcdir)/'`src/kdtreelib/qsort.c
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-qsort.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-qsort.Po
+#	$(AM_V_CC)source='src/kdtreelib/qsort.c' object='src/kdtreelib/lib_libads_a-qsort.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-qsort.o `test -f 'src/kdtreelib/qsort.c' || echo '$(srcdir)/'`src/kdtreelib/qsort.c
+
+src/kdtreelib/lib_libads_a-qsort.obj: src/kdtreelib/qsort.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -MT src/kdtreelib/lib_libads_a-qsort.obj -MD -MP -MF src/kdtreelib/$(DEPDIR)/lib_libads_a-qsort.Tpo -c -o src/kdtreelib/lib_libads_a-qsort.obj `if test -f 'src/kdtreelib/qsort.c'; then $(CYGPATH_W) 'src/kdtreelib/qsort.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/qsort.c'; fi`
+	$(AM_V_at)$(am__mv) src/kdtreelib/$(DEPDIR)/lib_libads_a-qsort.Tpo src/kdtreelib/$(DEPDIR)/lib_libads_a-qsort.Po
+#	$(AM_V_CC)source='src/kdtreelib/qsort.c' object='src/kdtreelib/lib_libads_a-qsort.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_libads_a_CFLAGS) $(CFLAGS) -c -o src/kdtreelib/lib_libads_a-qsort.obj `if test -f 'src/kdtreelib/qsort.c'; then $(CYGPATH_W) 'src/kdtreelib/qsort.c'; else $(CYGPATH_W) '$(srcdir)/src/kdtreelib/qsort.c'; fi`
+
 src/utils/bin_ads-ads.o: src/utils/ads.c
 	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(bin_ads_CFLAGS) $(CFLAGS) -MT src/utils/bin_ads-ads.o -MD -MP -MF src/utils/$(DEPDIR)/bin_ads-ads.Tpo -c -o src/utils/bin_ads-ads.o `test -f 'src/utils/ads.c' || echo '$(srcdir)/'`src/utils/ads.c
 	$(AM_V_at)$(am__mv) src/utils/$(DEPDIR)/bin_ads-ads.Tpo src/utils/$(DEPDIR)/bin_ads-ads.Po
@@ -1153,6 +1271,8 @@ distclean-generic:
 	-rm -f src/ads/gc/$(am__dirstamp)
 	-rm -f src/ads/sax/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/ads/sax/$(am__dirstamp)
+	-rm -f src/kdtreelib/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/kdtreelib/$(am__dirstamp)
 	-rm -f src/utils/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/utils/$(am__dirstamp)
 
@@ -1166,7 +1286,7 @@ clean-am: clean-binPROGRAMS clean-generic clean-libLIBRARIES \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf src/ads/$(DEPDIR) src/ads/gc/$(DEPDIR) src/ads/sax/$(DEPDIR) src/utils/$(DEPDIR)
+	-rm -rf src/ads/$(DEPDIR) src/ads/gc/$(DEPDIR) src/ads/sax/$(DEPDIR) src/kdtreelib/$(DEPDIR) src/utils/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-tags
@@ -1214,7 +1334,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf src/ads/$(DEPDIR) src/ads/gc/$(DEPDIR) src/ads/sax/$(DEPDIR) src/utils/$(DEPDIR)
+	-rm -rf src/ads/$(DEPDIR) src/ads/gc/$(DEPDIR) src/ads/sax/$(DEPDIR) src/kdtreelib/$(DEPDIR) src/utils/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

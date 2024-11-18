@@ -79,6 +79,9 @@ typedef struct MESSI_workerdata_ekosmas
 	int startqueuenumber;
 	// pqueue_bsf *pq_bsf;						// EKOSMAS, 29 AUGUST 2020: REMOVED
 	int workernumber; 							// EKOSMAS, AUGUST 29 2020: Added
+	///////////////////////////////////////
+	attribute_type * attribute;
+	///////////////////////////////////////
 }MESSI_workerdata_ekosmas;
 
 typedef struct MESSI_workerdata_ekosmas_EP
@@ -141,10 +144,24 @@ void* exact_search_worker_inmemory_hybridpqueue(void *rfdata);
 void insert_tree_node_m_hybridpqueue(float *paa,isax_node *node,isax_index *index,float bsf,pqueue_t **pq,pthread_mutex_t *lock_queue,int *tnumber);
 
 
+/////////////////////////////////////////////////////////
+query_result exact_search_ParISnew_inmemory_hybrid_vorgias(ts_type *ts, ts_type *paa, isax_index *index, node_list *nodelist,
+                           float minimum_distance,attribute_type*attribute);
+/////////////////////////////////////////////////////////
 
 query_result exact_search_ParISnew_inmemory_hybrid_ekosmas (ts_type *ts, ts_type *paa, isax_index *index,node_list *nodelist,
                            float minimum_distance);
+
+///////////////////////////////////////////
+void* exact_search_worker_inmemory_hybridpqueue_vorgias(void *rfdata);
+///////////////////////////////////////////
+
 void* exact_search_worker_inmemory_hybridpqueue_ekosmas(void *rfdata);
+
+///////////////////////////////////////////////////
+void insert_tree_node_m_hybridpqueue_vorgias (float *paa,isax_node *node,isax_index *index,float bsf,pqueue_t **pq,pthread_mutex_t *lock_queue,int *tnumber,attribute_type*atribute);
+///////////////////////////////////////////////////
+
 void insert_tree_node_m_hybridpqueue_ekosmas (float *paa,isax_node *node,isax_index *index,float bsf,pqueue_t **pq,pthread_mutex_t *lock_queue,int *tnumber);
 
 

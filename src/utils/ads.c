@@ -52,6 +52,7 @@ int main (int argc, char **argv)
 {
     static char * dataset = "/home/ekosmas/datasets/dataset10GB.bin";
     static char * attributes = "";///////////////////////////////////
+    static char * queryAttributes = "";///////////////////////////////////
     static char * dataset_output = "";
     static char * dataset_compare = "";
     static char * queries = "/home/botao/document/";
@@ -59,6 +60,9 @@ int main (int argc, char **argv)
     static char * labelset="/home/botao/document/myexperiment/";
     static long int dataset_size = 10485760;//testbench
     static int queries_size = 10;
+    static int attribute_size = 3;/////////////////////////////////
+    static int attribute_min_value = 0;//////////////////////
+    static int attribute_max_value =100;/////////////////////
     static int time_series_size = 256;
     static int paa_segments = 16;
     static int sax_cardinality = 8;
@@ -129,7 +133,10 @@ int main (int argc, char **argv)
             {"dataset-output",required_argument,0,'7'},
             {"chunk-size",required_argument,0,'8'},
             {"fai-step",required_argument,0,'9'},
-            {"attributes", required_argument, 0, 'A'},/////////////////////////////////////////////
+            {"attributes", required_argument, 0, 'A'},   ///////////////////////////////////
+            {"query-attributes",required_argument,0,'B'},///////////////////////////////////
+            {"query-attrmaxval",required_argument,0,'C'},///////////////////////////////////
+            {"query-attrminval",required_argument,0,'D'},///////////////////////////////////
             {NULL, 0, NULL, 0}
         };
 
@@ -330,6 +337,15 @@ int main (int argc, char **argv)
             case 'A':
                 attributes = optarg;///////////////////////////////
                 break;
+            case 'B':
+                queryAttributes = optarg;////////////////////////////
+                break;
+            case 'C':
+                attribute_max_value= atoi(optarg);
+                break;
+            case 'D':
+                attribute_min_value= atoi(optarg);
+                break;
             default:
                 exit(-1);
                 break;
@@ -356,8 +372,11 @@ int main (int argc, char **argv)
 																		tight_bound,		// Tightness of leaf bounds
 																		aggressive_check,	// aggressive check
 																		1,                  // ???? EKOSMAS ????
-                                                                        inmemory_flag);		// new index
-	
+                                                                        inmemory_flag,		// new index
+                                                                        attribute_size,          ////////////////////////////////////
+                                                                        attribute_max_value,//////////////////////////////////////
+                                                                        attribute_min_value);//////////////////////////////////
+                                                                        
     
     isax_index *idx;
     MY_PRINT_STATS(0.00f)
@@ -380,7 +399,7 @@ int main (int argc, char **argv)
             index_creation_pRecBuf_new_ekosmas(dataset, dataset_size, idx,attributes);////////////////////////////////
 
             // PHASE 3: Query Answering
-            isax_query_binary_file_traditional_ekosmas(queries, queries_size, idx, minimum_distance, &exact_search_ParISnew_inmemory_hybrid_ekosmas);
+            isax_query_binary_file_traditional_vorgias(queries,queryAttributes, queries_size, idx, minimum_distance, &exact_search_ParISnew_inmemory_hybrid_vorgias);//////////////////////////
         }
         else if (function_type == 99904){                                     // ekosmas's version according to botao's + fine-grained blocking parallelism when creating subtrees
             // PHASE 1: Fill in of Receive Bufers and PHASE 2: Index Creation

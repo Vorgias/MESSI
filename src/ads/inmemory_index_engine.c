@@ -6,8 +6,10 @@
 #define _GNU_SOURCE
 
 #ifdef VALUES
+
 #include <values.h>
 #endif
+#include "kdtree.h"
 #include <float.h>
 #include "../../config.h"
 #include "../../globals.h"
@@ -835,12 +837,12 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
 
     fseek(afile, 0L, SEEK_END);
     file_position_type sz2 = (file_position_type)ftell(afile);              // sz2 = size in bytes
-    file_position_type total_records2 = sz2 / sizeof(attribute_type); // total bytes / size (in bytes) of one data series
+    file_position_type total_records2 = sz2 / (sizeof(attribute_type)*index->settings->attribute_size); // total bytes / size (in bytes) of one data series
     fseek(afile, 0L, SEEK_SET);
 
     if (total_records2 < ts_num)
     { // check if u have the entire file
-        fprintf(stderr, "File %s has only %llu records!\n", afilename, total_records);
+        fprintf(stderr, "File %s has only %llu records!\n", afilename, total_records2);
         exit(-1);
     }
     ////////////////////////////////////////////////////
@@ -850,18 +852,21 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
     index->settings->raw_filename = malloc(256);
     strcpy(index->settings->raw_filename, ifilename);
     rawfile = malloc(index->settings->ts_byte_size * ts_num); // CHANGED BY EKOSMAS - 06/05/2020
+    attrfile = malloc(sizeof(attribute_type)*ts_num*index->settings->attribute_size);///////////////////////////////////////////////
     COUNT_INPUT_TIME_START
     int read_number = fread(rawfile, sizeof(ts_type), index->settings->timeseries_size * ts_num, ifile);
     //////////////////////////////////////////////
-    attrfile = malloc(sizeof(attribute_type)*ts_num);
-    fread(attrfile,sizeof(attribute_type),ts_num,afile);
+    fread(attrfile,sizeof(attribute_type),index->settings->attribute_size*ts_num,afile);
+    // for(int i = 0;i<ts_num*index->settings->attribute_size;i++){
+    //     attrfile[i]=(attribute_type)1;
+    // }//testing
     //////////////////////////////////////////////
     COUNT_INPUT_TIME_END
     ///////////////////////////////////
-    printf("attributes:\n");
-    for(int i = 0;i<ts_num;i++){
-        printf(" %ld ",attrfile[i]);
-    }
+    // printf("attributes:\n");
+    // for(int i = 0;i<ts_num;i++){
+    //     printf(" %ld ",attrfile[i]);
+    // }
     printf("attributes finished\n");
     if(total_records2 == ts_num){
         printf("NUMBER OF ATTRIBUTES == NUMBER OF TIMESERIES");
@@ -923,35 +928,30 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
     }
 
     /////////////////////////////////////
-    int attrvalue;
-    isax_node * temp = NULL;
-    int expectedleafs=0;
-    for(int i = 0; i<index->fbl->number_of_buffers; i++){
-        if(index->fbl->soft_buffers[i].node != NULL && index->fbl->soft_buffers[i].initialized == 1){
-            expectedleafs = index->fbl->soft_buffers[i].node->numofleafs;
-            temp = index->fbl->soft_buffers[i].node->leftmost_leaf;
-            //if(temp == NULL)printf("%d ",i);//root only
-            while(temp!=NULL){              //leaf list
-                printf(" %d_%d/%d ",i,temp->leaf_id,expectedleafs);
-                for(int i = 0; i<temp->buffer->partial_buffer_size;i++){
-                    printf(" %ld ",*temp->buffer->partial_attribute_buffer[i]);
-                }
-                temp = temp->leaflist_next;
-            }
-            //if(index->fbl->soft_buffers[i].node ->left_child != NULL){
-            //    printf("\n-----------------------------------inorder trav----------\n");
-            //    inorderTraversalCheckForLRpointers(index->fbl->soft_buffers[i].node);
-            //    printf("\n-----------------------------------inorder trav----------\n");
-            //}
-        }
-
-    }
-    printf("\n");
+    // int attrvalue;
+    // isax_node * temp = NULL;
+    // int expectedleafs=0;
+    // for(int i = 0; i<index->fbl->number_of_buffers; i++){
+    //     if(index->fbl->soft_buffers[i].node != NULL && index->fbl->soft_buffers[i].initialized == 1){
+    //         expectedleafs = index->fbl->soft_buffers[i].node->numofleafs;
+    //         temp = index->fbl->soft_buffers[i].node->leftmost_leaf;
+    //         //if(temp == NULL)printf("%d ",i);//root only
+    //         while(temp!=NULL){              //leaf list
+    //             printf(" %d_%d/%d ",i,temp->leaf_id,expectedleafs);
+    //             // for(int i = 0; i<temp->buffer->partial_buffer_size;i++){
+    //             //     printf(" %ld ",*temp->buffer->partial_attribute_buffer[i]);
+    //             // }
+    //             temp = temp->leaflist_next;
+    //         }
+    //     }
+    // }
+    // printf("\n");
     ////////////////////////////////////
 
 
     free(input_data);
     fclose(ifile);
+    fclose(afile);///////////////////
     COUNT_CREATE_TREE_INDEX_TIME_END
     COUNT_OUTPUT_TIME_END
 
@@ -4260,11 +4260,72 @@ static inline void tree_index_creation_from_pRecBuf_fai_lock_free_geopat_flag_EP
 
 
 
+//////////////////////////////////////
+
+void *
+data_constr(void *data)
+{
+    unsigned long *a;
+
+    a = malloc(sizeof(unsigned long));
+    memcpy(a, (unsigned long *) data, sizeof(unsigned long));
+    return a;
+}
+
+void
+data_destr(void *data)
+{
+    free(data);
+}
+
+void buildLeafKdTree(isax_node* leaf,isax_index* index){
+            unsigned long i;
+            unsigned int npoints;
+            int nthreads;
+            int j, dim;
+            unsigned int start, buildTime, searchTime, rectSearchTime;
+            struct kd_point *pointlist;
+            float *min, *max;
+
+            npoints = leaf->buffer->partial_buffer_size;
+            nthreads = 1;
+
+            dim = index->settings->attribute_size;
+
+            pointlist = malloc(npoints * sizeof(struct kd_point));
+
+            min = malloc(sizeof(float)*dim);
+            max = malloc(sizeof(float)*dim);
+
+            for(int k = 0 ;k < dim;k++){
+                min[k]=index->settings->attribute_min_value;
+                max[k]=index->settings->attribute_max_value;
+            }
+
+            for(i = 0; i < npoints; i++) {
+                pointlist[i].point = malloc(dim*sizeof(float));
+                pointlist[i].data = (unsigned long *) malloc(sizeof(unsigned long));
+                memcpy(pointlist[i].data, &i, sizeof(unsigned long));
+                for(j = 0; j < dim; j++){
+                    attribute_type*temp1=leaf->buffer->partial_attribute_buffer[i];
+                    pointlist[i].point[j] = (float)temp1[j];
+                }
+            }
+            if ((leaf->kdtree = kd_buildTree(pointlist, npoints, data_constr, data_destr,min, max, dim, nthreads)) == NULL) {
+                fprintf(stderr, "Error building kd-tree\n");
+                exit(EXIT_FAILURE);
+            }
+            for(i = 0; i < npoints; i++) {
+                free(pointlist[i].data);
+                free(pointlist[i].point);
+            }
+            free(pointlist);
+}
+///////////////////////////////////////
 
 
 
-
-inline void tree_index_creation_from_pRecBuf_fai_blocking(void *transferdata)
+void tree_index_creation_from_pRecBuf_fai_blocking(void *transferdata)
 {
     buffer_data_inmemory_ekosmas *input_data = (buffer_data_inmemory_ekosmas *)transferdata;
     isax_index *index = input_data->index;
@@ -4295,21 +4356,27 @@ inline void tree_index_creation_from_pRecBuf_fai_blocking(void *transferdata)
                 r->sax = (sax_type *)&(((current_fbl_node->sax_records[k]))[i * index->settings->paa_segments]);
                 r->position = (file_position_type *)&((file_position_type *)(current_fbl_node->pos_records[k]))[i];
                 //////////////////////////////////////////////
-                r->attr = (attribute_type*)&(((current_fbl_node->att_records[k]))[i]);
+                r->attr = (attribute_type*)&(((current_fbl_node->att_records[k]))[i * index->settings->attribute_size]);
                 //////////////////////////////////////////////
                 r->insertion_mode = NO_TMP | PARTIAL;
                 // Add record to index
                 add_record_to_node_inmemory(index, (isax_node *)current_fbl_node->node, r, 1);
             }
         }
-        ///////////////////////////////
-        int num=0;
-        isax_node* temp = current_fbl_node->node->leftmost_leaf;
-        while(temp!=NULL){
-            temp->leaf_id = num++;
-            temp=temp->leaflist_next;
+        ///////////////////////////////******************************************************************* */
+        //building kd tree in each leaf and numbering leafs
+        if(current_fbl_node->node->is_leaf){
+            buildLeafKdTree(current_fbl_node->node,index);
+        }else{
+            int num=0;
+            isax_node* temp = current_fbl_node->node->leftmost_leaf;
+            while(temp!=NULL){
+                buildLeafKdTree(temp,index);
+                temp->leaf_id = num++;
+                temp=temp->leaflist_next;
+            }
         }
-        ///////////////////////////////
+        ///////////////////////////////******************************************************************* */
     }
 
     free(r);
@@ -4676,10 +4743,7 @@ void *index_creation_pRecBuf_worker_new_ekosmas(void *transferdata)
             {
                 pos = (file_position_type)(i * index->settings->timeseries_size);
                 // memcpy(&(index->sax_cache[i*sax_byte_size]), sax, sax_byte_size);                    // REMOVED BY EKOSMAS - 04/06/2020 // CHANGED BY EKOSMAS - 11/05/2020
-            
-            //////////////////////////////////////////////////                      
-                //have a variable like pos or sax that keeps pointer to the big attribute structure that needs to be built and pass that pointer to the function bellow
-            //////////////////////////////////////////////////                      
+                                 
 
                 isax_pRecBuf_index_insert_inmemory_ekosmas(
                     index,

@@ -18,18 +18,26 @@
 
 float calculate_node_distance_inmemory (isax_index *index, isax_node *node, ts_type *query , float bsf);
 ///////////////////////////////////
-float calculate_node_distance_inmemory_with_attribute (isax_index *index, isax_node *node, ts_type *query, float bsf,int key);
+float calculate_node_distance_inmemory_with_attribute (isax_index *index, isax_node *node, ts_type *query, float bsf,attribute_type * attribute);
 ///////////////////////////////////
 float calculate_node_distance_inmemory_ekosmas (isax_index *index, isax_node *node, ts_type *query , float bsf);
 float calculate_node_distance_inmemory_ekosmas_lf (isax_index *index, isax_node *node, ts_type *query, float bsf, const char parallelism_in_subtree);
 float calculate_node_distance_inmemory_geopat_lf (isax_index *index, isax_node_single_buffer *node, ts_type *query, float bsf, const char parallelism_in_subtree) ;
 float calculate_node_distance2_inmemory (isax_index *index, isax_node *node, ts_type *query, ts_type *paa, float bsf);
+///////////////////////////////////////////////////
+float calculate_node_distance2_inmemory_vorgias (isax_index *index, isax_node *node, ts_type *query, ts_type *paa, float bsf,attribute_type* attribute,isax_node_record**record) ;
+///////////////////////////////////////////////////
 float calculate_node_distance2_inmemory_ekosmas (isax_index *index, isax_node *node, ts_type *query, ts_type *paa, float bsf);
 float calculate_node_distance2_inmemory_geopat (isax_index *index, isax_node_record *record, ts_type *query, ts_type *paa, float bsf);
 float calculate_node_distance2_inmemory_geopat2(isax_index *index, query_result *n, ts_type *query, ts_type *paa, float bsf,const char parallelism_in_subtree) ;
 float calculate_eyclidian_distance(isax_index *index, ts_type *query, float bsf,unsigned long position);
 float calculate_node_distance2_inmemory_ekosmas_lf (isax_index *index, query_result *n, ts_type *query, ts_type *paa, float bsf, const char parallelism_in_subtree);
 query_result  approximate_search_inmemory_pRecBuf (ts_type *ts, ts_type *paa, isax_index *index);
+//////////////////////////////////////////////////////////////////////
+int areAttributesEqual(attribute_type* attribute1,attribute_type* attribute2,int attribute_size);
+int evalSubtree(isax_node* root , attribute_type* key,isax_index* index);
+query_result  approximate_search_inmemory_pRecBuf_vorgias(ts_type *ts, ts_type *paa, isax_index *index,attribute_type * attribute);
+//////////////////////////////////////////////////////////////////////
 query_result  approximate_search_inmemory_pRecBuf_ekosmas (ts_type *ts, ts_type *paa, isax_index *index);
 query_result  approximate_search_inmemory_pRecBuf_ekosmas_lf (ts_type *ts, ts_type *paa, isax_index *index, const char parallelism_in_subtree);
 query_result  approximate_search_inmemory_pRecBuf_ekosmas_lf_geopat(ts_type *ts, ts_type *paa, isax_index *index, const char parallelism_in_subtree);

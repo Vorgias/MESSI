@@ -93,7 +93,7 @@ isax_index_settings * isax_index_settings_init(const char * root_directory, int 
                                                int max_leaf_size, int min_leaf_size,
                                                int initial_leaf_buffer_size,
                                                int max_total_buffer_size, int initial_fbl_buffer_size,
-                                               int total_loaded_leaves, int tight_bound, int aggressive_check, int new_index,char inmemory_flag)
+                                               int total_loaded_leaves, int tight_bound, int aggressive_check, int new_index,char inmemory_flag,int attribute_size,int attribute_max_value,int attribute_min_value)
 {
     int i;
     isax_index_settings *settings = malloc(sizeof(isax_index_settings));
@@ -140,6 +140,9 @@ isax_index_settings * isax_index_settings_init(const char * root_directory, int 
         fprintf(stderr,"error: Leaf buffers should be at least as big as leafs.\n");
         return NULL;
     }
+    settings->attribute_size = attribute_size;/////////////////////////////////
+    settings->attribute_max_value = attribute_max_value;////////////////////////////////
+    settings->attribute_min_value = attribute_min_value;///////////////////////////////
     settings->total_loaded_leaves = total_loaded_leaves;
     settings->root_directory = root_directory;
     settings->raw_filename = NULL;
@@ -221,7 +224,7 @@ isax_index_settings * isax_index_settings_init(const char * root_directory, int 
         settings->max_total_buffer_size = settings->max_total_full_buffer_size;
     }
 
-
+    
     return settings;
 }
 
