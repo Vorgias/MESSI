@@ -36,6 +36,17 @@ typedef struct update {
     InfoRecord *info; 
 } Update;
 
+///////////////////////////////
+typedef struct skipSearch_node{
+    attribute_type * attribute;
+    int searched;
+    int supports_predicate;
+    struct isax_node * lastSearchedInARow;
+    struct skipSearch_node* next;//in same node different query
+}skipSearch_node;
+///////////////////////////////
+
+
 typedef struct isax_node {
     // General
     int leaf_size;
@@ -89,6 +100,10 @@ typedef struct isax_node {
     struct isax_node *leaflist_next;
     struct isax_node *leaflist_previous;
     int leaf_id;
+    //skiplist 
+    struct isax_node * nextInSkiplist;
+    int supports_pred;
+    attribute_type* attribute_when_searchedFirst;
     ////////////////////////////////////
 
 } isax_node;

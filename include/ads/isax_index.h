@@ -67,6 +67,9 @@ typedef struct {
     int root_nodes_size;
 
     int total_loaded_leaves;
+    //////////////////////////
+    int attribute_size;
+    //////////////////////////
 
 } isax_index_settings;
 
@@ -108,7 +111,7 @@ isax_index_settings * isax_index_settings_init (const char * root_directory,
                                                 int max_total_buffer_size,
                                                 int initial_fbl_buffer_size,
                                                 int total_loaded_leaves,
-												int tight_bound, int aggressive_check, int new_index ,char inmemory_flag);
+												int tight_bound, int aggressive_check, int new_index ,char inmemory_flag,int attribute_size);
 void print_settings(isax_index_settings *settings);
 
 isax_node * add_record_to_node(isax_index *index, isax_node *node,

@@ -109,12 +109,17 @@ isax_node * isax_leaf_node_init(int initial_buffer_size, parallel_fbl_soft_buffe
     node->processed = 0;
     node->lock_node = NULL;                                                 // EKOSMAS: ADDED 02 NOVEMBER 2020
     ///////////////////////////////////////////////////
+    //node->lock_node = malloc(sizeof(pthread_mutex_t));
+    //pthread_mutex_init(node->lock_node,NULL);
     node->leaf_id = -1;
     node->numofleafs = 0;
     node->rightmost_leaf = NULL;
     node->leftmost_leaf = NULL;
     node->leaflist_previous = NULL;
     node->leaflist_next = NULL;
+    node->nextInSkiplist = NULL;
+    node->supports_pred = 0;
+    node->attribute_when_searchedFirst = NULL;
     ///////////////////////////////////////////////////
     return node;
 }

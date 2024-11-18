@@ -268,6 +268,7 @@ isax_node * insert_to_pRecBuf_ekosmas(parallel_first_buffer_layer_ekosmas *fbl, 
                                                  current_buffer->max_buffer_size[workernumber]);
             //////////////////////////////////////////////////
             current_buffer->att_records[workernumber] = malloc(sizeof(attribute_type)*
+                                                 index->settings->attribute_size*
                                                  current_buffer->max_buffer_size[workernumber]);
             //////////////////////////////////////////////////
                                                  
@@ -284,6 +285,7 @@ isax_node * insert_to_pRecBuf_ekosmas(parallel_first_buffer_layer_ekosmas *fbl, 
             //////////////////////////////////////////////////                      
             current_buffer->att_records[workernumber] = realloc(current_buffer->att_records[workernumber],
                                            sizeof(attribute_type)*
+                                           index->settings->attribute_size*
                                            current_buffer->max_buffer_size[workernumber]);
             //////////////////////////////////////////////////                      
 
@@ -330,7 +332,7 @@ isax_node * insert_to_pRecBuf_ekosmas(parallel_first_buffer_layer_ekosmas *fbl, 
             //////////////////////////////////////////////////                      
     //fill attribute array's position
     //attrpointer[current_buffer_number] = attrfile[attrposition];
-    memcpy((void*)&attrpointer[current_buffer_number],(void*)&attrfile[attrposition],sizeof(attribute_type));
+    memcpy((void*)&attrpointer[current_buffer_number*index->settings->attribute_size],(void*)&attrfile[attrposition*index->settings->attribute_size],index->settings->attribute_size*sizeof(attribute_type));
             //////////////////////////////////////////////////                      
 
 

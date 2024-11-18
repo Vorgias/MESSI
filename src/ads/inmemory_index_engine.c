@@ -835,12 +835,12 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
 
     fseek(afile, 0L, SEEK_END);
     file_position_type sz2 = (file_position_type)ftell(afile);              // sz2 = size in bytes
-    file_position_type total_records2 = sz2 / sizeof(attribute_type); // total bytes / size (in bytes) of one data series
+    file_position_type total_records2 = sz2 / (sizeof(attribute_type)*index->settings->attribute_size); // total bytes / size (in bytes) of one data series
     fseek(afile, 0L, SEEK_SET);
 
     if (total_records2 < ts_num)
     { // check if u have the entire file
-        fprintf(stderr, "File %s has only %llu records!\n", afilename, total_records);
+        fprintf(stderr, "File %s has only %llu records!\n", afilename, total_records2);
         exit(-1);
     }
     ////////////////////////////////////////////////////
@@ -850,18 +850,18 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
     index->settings->raw_filename = malloc(256);
     strcpy(index->settings->raw_filename, ifilename);
     rawfile = malloc(index->settings->ts_byte_size * ts_num); // CHANGED BY EKOSMAS - 06/05/2020
+    attrfile = malloc(sizeof(attribute_type)*ts_num*index->settings->attribute_size);//////////////////////////////////////////////////////////////
     COUNT_INPUT_TIME_START
     int read_number = fread(rawfile, sizeof(ts_type), index->settings->timeseries_size * ts_num, ifile);
     //////////////////////////////////////////////
-    attrfile = malloc(sizeof(attribute_type)*ts_num);
-    fread(attrfile,sizeof(attribute_type),ts_num,afile);
+    fread(attrfile,sizeof(attribute_type),index->settings->attribute_size*ts_num,afile);
     //////////////////////////////////////////////
     COUNT_INPUT_TIME_END
     ///////////////////////////////////
-    printf("attributes:\n");
-    for(int i = 0;i<ts_num;i++){
-        printf(" %ld ",attrfile[i]);
-    }
+    // printf("attributes:\n");
+    // for(int i = 0;i<ts_num;i++){
+    //     printf(" %ld ",attrfile[i]);
+    // }
     printf("attributes finished\n");
     if(total_records2 == ts_num){
         printf("NUMBER OF ATTRIBUTES == NUMBER OF TIMESERIES");
@@ -923,35 +923,36 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
     }
 
     /////////////////////////////////////
-    int attrvalue;
-    isax_node * temp = NULL;
-    int expectedleafs=0;
-    for(int i = 0; i<index->fbl->number_of_buffers; i++){
-        if(index->fbl->soft_buffers[i].node != NULL && index->fbl->soft_buffers[i].initialized == 1){
-            expectedleafs = index->fbl->soft_buffers[i].node->numofleafs;
-            temp = index->fbl->soft_buffers[i].node->leftmost_leaf;
-            //if(temp == NULL)printf("%d ",i);//root only
-            while(temp!=NULL){              //leaf list
-                printf(" %d_%d/%d ",i,temp->leaf_id,expectedleafs);
-                for(int i = 0; i<temp->buffer->partial_buffer_size;i++){
-                    printf(" %ld ",*temp->buffer->partial_attribute_buffer[i]);
-                }
-                temp = temp->leaflist_next;
-            }
-            //if(index->fbl->soft_buffers[i].node ->left_child != NULL){
-            //    printf("\n-----------------------------------inorder trav----------\n");
-            //    inorderTraversalCheckForLRpointers(index->fbl->soft_buffers[i].node);
-            //    printf("\n-----------------------------------inorder trav----------\n");
-            //}
-        }
+    // int attrvalue;
+    // isax_node * temp = NULL;
+    // int expectedleafs=0;
+    // for(int i = 0; i<index->fbl->number_of_buffers; i++){
+    //     if(index->fbl->soft_buffers[i].node != NULL && index->fbl->soft_buffers[i].initialized == 1){
+    //         expectedleafs = index->fbl->soft_buffers[i].node->numofleafs;
+    //         temp = index->fbl->soft_buffers[i].node->leftmost_leaf;
+    //         //if(temp == NULL)printf("%d ",i);//root only
+    //         while(temp!=NULL){              //leaf list
+    //             printf(" %d_%d/%d ",i,temp->leaf_id,expectedleafs);
+    //             // for(int i = 0; i<temp->buffer->partial_buffer_size;i++){
+    //             //     printf(" %ld ",*temp->buffer->partial_attribute_buffer[i]);
+    //             // }
+    //             temp = temp->leaflist_next;
+    //         }
+    //         //if(index->fbl->soft_buffers[i].node ->left_child != NULL){
+    //         //    printf("\n-----------------------------------inorder trav----------\n");
+    //         //    inorderTraversalCheckForLRpointers(index->fbl->soft_buffers[i].node);
+    //         //    printf("\n-----------------------------------inorder trav----------\n");
+    //         //}
+    //     }
 
-    }
-    printf("\n");
+    // }
+    // printf("\n");
     ////////////////////////////////////
 
 
     free(input_data);
     fclose(ifile);
+    fclose(afile);///////////////////
     COUNT_CREATE_TREE_INDEX_TIME_END
     COUNT_OUTPUT_TIME_END
 
@@ -4295,7 +4296,7 @@ inline void tree_index_creation_from_pRecBuf_fai_blocking(void *transferdata)
                 r->sax = (sax_type *)&(((current_fbl_node->sax_records[k]))[i * index->settings->paa_segments]);
                 r->position = (file_position_type *)&((file_position_type *)(current_fbl_node->pos_records[k]))[i];
                 //////////////////////////////////////////////
-                r->attr = (attribute_type*)&(((current_fbl_node->att_records[k]))[i]);
+                r->attr = (attribute_type*)&(((current_fbl_node->att_records[k]))[i * index->settings->attribute_size]);
                 //////////////////////////////////////////////
                 r->insertion_mode = NO_TMP | PARTIAL;
                 // Add record to index
@@ -4305,9 +4306,13 @@ inline void tree_index_creation_from_pRecBuf_fai_blocking(void *transferdata)
         ///////////////////////////////
         int num=0;
         isax_node* temp = current_fbl_node->node->leftmost_leaf;
+        if(current_fbl_node->node->is_leaf){
+            //buildkdtree(current_fbl_node->node)
+        }
         while(temp!=NULL){
             temp->leaf_id = num++;
             temp=temp->leaflist_next;
+            //buildkdtree(temp)
         }
         ///////////////////////////////
     }

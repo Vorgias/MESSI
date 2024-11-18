@@ -69,27 +69,364 @@ query_result  approximate_search_inmemory_pRecBuf(ts_type *ts, ts_type *paa, isa
 }
 
 //////////////////////////////////////
-int leafContainsAttr(isax_node* root , int key){
+// skipSearch_node* getskipSearchNode(isax_node*node,attribute_type* attribute){
+//     return NULL;
+//     if(node->skipSearch_list==NULL)return NULL;
+
+//     if(*node->skipSearch_list->attribute == *attribute){return node->skipSearch_list;
+//     }else{ return NULL;}
+
+
+//     skipSearch_node * temp = node->skipSearch_list;
+//     while(temp != NULL){
+//         if(*attribute == *temp->attribute)return temp;
+//         temp=temp->next;
+//     }
+//     return NULL;
+// }
+int leafContainsAttr(isax_node* root , attribute_type* attribute){
+    // if(*attribute == 63){
+         
+            
+    //             //  for(int i = 0; i<root->buffer->partial_buffer_size;i++){
+    //             //      printf(" %ld",*root->buffer->partial_attribute_buffer[i]);
+    //             //  }
+    //             // printf("\n");
+    //             for(int i = 0; i<100;i++)printf(" %d/%d",*root->buffer->partial_attribute_buffer[0],i);
+        
+    // }
     for(int i = 0; i<root->buffer->partial_buffer_size;i++){
-        if(*(root->buffer->partial_attribute_buffer[i])==key)return 1;
+        if((long int)(*root->buffer->partial_attribute_buffer[i])==(long int)(*attribute)){
+            
+            return 1;
+        }
     }
     return 0;
 }
+int leafContainsAttr2(isax_node* root , attribute_type* attribute){
+    // if(*attribute == 63){
+         
+            
+    //             //  for(int i = 0; i<root->buffer->partial_buffer_size;i++){
+    //             //      printf(" %ld",*root->buffer->partial_attribute_buffer[i]);
+    //             //  }
+    //             // printf("\n");
+    //             for(int i = 0; i<100;i++)printf(" %d/%d",*root->buffer->partial_attribute_buffer[0],i);
+        
+    // }
+    for(int i = 0; i<root->buffer->partial_buffer_size;i++){
+        if((long int)(*root->buffer->partial_attribute_buffer[i])==(long int)(*attribute)){
+            printf(" %d=%ld ",i,(*root->buffer->partial_attribute_buffer[i]));
+            return 1;
+        }
+    }
+    return 0;
+}
+int printAttr(isax_node* root , attribute_type* attribute){
+    // if(*attribute == 63){
+         
+            
+    //             //  for(int i = 0; i<root->buffer->partial_buffer_size;i++){
+    //             //      printf(" %ld",*root->buffer->partial_attribute_buffer[i]);
+    //             //  }
+    //             // printf("\n");
+    //             for(int i = 0; i<100;i++)printf(" %d/%d",*root->buffer->partial_attribute_buffer[0],i);
+        
+    // }
+    for(int i = 0; i<root->buffer->partial_buffer_size;i++){
+            printf(" %d ",*root->buffer->partial_attribute_buffer[i],i);
+    }
 
-int evalSubtree(isax_node* root , int key){
+    //printf(" %d ",*root->buffer->partial_attribute_buffer[root->buffer->partial_buffer_size-1] );
+    return 0;
+}
+// int evalSubtree(isax_node* root , attribute_type* attribute){
     
-    if(root->is_leaf)return leafContainsAttr(root,key);
+//     if(root->is_leaf)return leafContainsAttr(root,* attribute);
+//     isax_node * temp = root->leftmost_leaf;
+//     int max = root->rightmost_leaf->leaf_id;
+//     //printf("starting from : %d to %d\n",temp->leaf_id,max);
+//     while(temp!=NULL && temp->leaf_id <= max){
+//         if(leafContainsAttr(temp,* attribute))return 1;
+//         temp = temp->leaflist_next;
+//     }
+//     return 0;
+//
+//}
+int areAttributesEqual(attribute_type* attribute1,attribute_type* attribute2,int attribute_size){
+    for(int i =0; i<attribute_size; i++){
+        if(attribute1[i]!=attribute2[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
+int evalSubtree(isax_node* root , attribute_type* attribute,isax_index*index){
+    if(root==NULL)return 0;
+    if(root->is_leaf ){
+        if(root->buffer->partial_buffer_size == 0)return 0;
+        if(root->attribute_when_searchedFirst == NULL || root->supports_pred == 0 || areAttributesEqual(root->attribute_when_searchedFirst,attribute,index->settings->attribute_size)==0){//*root->attribute_when_searchedFirst != *attribute){//TO BE COMPARED PROPERLY
+
+            if(leafContainsAttr(root,attribute)){
+                root->supports_pred =1;
+                root->attribute_when_searchedFirst = malloc(sizeof(attribute_type)*index->settings->attribute_size);
+                memcpy((root->attribute_when_searchedFirst),attribute,sizeof(attribute_type)*index->settings->attribute_size);
+            }else{
+                root->supports_pred =2;
+                root->attribute_when_searchedFirst = malloc(sizeof(attribute_type)*index->settings->attribute_size);
+                memcpy((root->attribute_when_searchedFirst),attribute,sizeof(attribute_type)*index->settings->attribute_size);
+            }
+
+            return root->supports_pred;
+        }else{
+            //printf("ATTRIBUTE:%d argument attribute: %d support:%d has %d\n",*root->attribute_when_searchedFirst,*attribute,root->supports_pred,leafContainsAttr(root,attribute));
+            return root->supports_pred;
+        }
+    }
     isax_node * temp = root->leftmost_leaf;
     int max = root->rightmost_leaf->leaf_id;
-    printf("starting from : %d to %d\n",temp->leaf_id,max);
+    //printf("starting from : %d to %d\n",temp->leaf_id,max);
+    isax_node** history=malloc(sizeof(isax_node*)*(root->rightmost_leaf->leaf_id - root->leftmost_leaf->leaf_id + 2));
+    int history_count=0;
     while(temp!=NULL && temp->leaf_id <= max){
-        if(leafContainsAttr(temp,key))return 1;
-        temp = temp->leaflist_next;
+        if(temp->attribute_when_searchedFirst == NULL || areAttributesEqual(temp->attribute_when_searchedFirst,attribute,index->settings->attribute_size)==0 || temp->supports_pred ==0){//TO BE COMPARED PROPERLY
+  
+            if(leafContainsAttr(temp,attribute)){
+                temp->supports_pred =1;
+                temp->attribute_when_searchedFirst = malloc(sizeof(attribute_type)*index->settings->attribute_size);
+                memcpy((temp->attribute_when_searchedFirst),attribute,sizeof(attribute_type)*index->settings->attribute_size);
+                
+                if(history_count>0){
+                isax_node* temp2 = history[0];
+                for(int i = 0 ; i<history_count;i++){
+                    temp2= history[i];
+                    temp2->nextInSkiplist = temp;
+                }
+                }
+
+                return 1;
+            }
+            temp->supports_pred =2;
+            temp->attribute_when_searchedFirst = malloc(sizeof(attribute_type)*index->settings->attribute_size);
+            memcpy((temp->attribute_when_searchedFirst),attribute,sizeof(attribute_type)*index->settings->attribute_size);
+
+            history[history_count]=temp;
+            //memcpy(history[history_count],temp,sizeof(isax_node*));
+            history_count++;
+
+        }else if(temp->supports_pred ==1 || temp->supports_pred == 2 ){
+            //printf("ATTRIBUTE:%d argument attribute: %d support:%d has %d L\n",*temp->attribute_when_searchedFirst,*attribute,temp->supports_pred,leafContainsAttr(temp,attribute));
+
+            if(temp->supports_pred ==1){
+                if(history_count>0){
+                isax_node* temp2 = history[0];
+                for(int i = 0 ; i<history_count;i++){
+                    temp2= history[i];
+                    temp2->nextInSkiplist = temp;
+                }
+                }
+                free(history);
+                return 1;
+            }
+
+        }
+        if(temp->nextInSkiplist!=NULL){
+
+            if(temp->nextInSkiplist->leaf_id >max){
+                if(history_count>0){
+                    isax_node* temp2 = history[0];
+                    for(int i = 0 ; i<history_count;i++){   
+                        temp2= history[i];
+                        if(temp2!=temp){
+                            temp2->nextInSkiplist = temp;
+                        }
+                    }
+                }
+                free(history);
+                return 0;
+            }
+            temp = temp->nextInSkiplist;
+
+        }else{
+
+            if(temp->leaflist_next == NULL || temp->leaflist_next->leaf_id > max){
+                if(history_count>0){
+                    isax_node* temp2 = history[0];
+                    for(int i = 0 ; i<history_count;i++){   
+                        temp2= history[i];
+                        if(temp2!=temp){
+                            temp2->nextInSkiplist = temp;
+                        }
+                    }
+                }
+                free(history);
+                return 0;
+            }
+            temp=temp->leaflist_next;
+
+        }
     }
     return 0;
 
 }
+
+struct StackNode {
+    isax_node* data;
+    int time;
+    struct StackNode* next;
+};
+
+struct StackNode* newNode(isax_node* data,int time)
+{
+    struct StackNode* stackNode = 
+      (struct StackNode*)
+      malloc(sizeof(struct StackNode));
+    stackNode->data = data;
+    stackNode->time = time;
+    stackNode->next = NULL;
+    return stackNode;
+}
+
+int isEmpty(struct StackNode* root)
+{
+    return !root;
+}
+
+void push(struct StackNode** root, isax_node* data,int time)
+{
+    struct StackNode* stackNode = newNode(data,time);
+    stackNode->next = *root;
+    *root = stackNode;
+    printf("%d pushed to stack\n", data);
+}
+
+struct StackNode* pop(struct StackNode** root)
+{
+    if (isEmpty(*root))
+        return NULL;
+    struct StackNode* temp = *root;
+    *root = (*root)->next;
+  
+    return temp;
+}
+
+struct StackNode* peek(struct StackNode* root)
+{
+    if (isEmpty(root))
+        return NULL;
+    return root;
+}
+
 //////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////
+query_result  approximate_search_inmemory_pRecBuf_vorgias(ts_type *ts, ts_type *paa, isax_index *index,attribute_type * attribute)
+{
+    /////////////////////////////
+    //int key = *attribute;
+    /////////////////////////////
+    query_result result;
+    
+    sax_type *sax = malloc(sizeof(sax_type) * index->settings->paa_segments);
+    sax_from_paa(paa, sax, index->settings->paa_segments,
+                 index->settings->sax_alphabet_cardinality,
+                 index->settings->sax_bit_cardinality);
+
+    root_mask_type root_mask = 0;
+    CREATE_MASK(root_mask, index, sax);
+
+    if ((&((parallel_first_buffer_layer_ekosmas*)(index->fbl))->soft_buffers[(int) root_mask])->initialized) {
+        isax_node *node = (isax_node *)(&((parallel_first_buffer_layer_ekosmas*)(index->fbl))->soft_buffers[(int) root_mask])->node;
+        
+        // // Traverse tree
+        // while (!node->is_leaf) {
+        //     int location = index->settings->sax_bit_cardinality - 1 -
+        //     node->split_data->split_mask[node->split_data->splitpoint];
+        //     root_mask_type mask = index->settings->bit_masks[location];
+
+        //     if(sax[node->split_data->splitpoint] & mask)
+        //     {
+        //         //////////////////////////////////
+        //         if(evalSubtree(node->right_child,attribute,index)){
+        //         //////////////////////////////////
+        //         node = node->right_child;
+        //         ///////////////
+        //         }else{
+        //             //printf("wanted right went left\n");
+        //             node = node->left_child;
+        //         }
+        //         ///////////////
+        //     }
+        //     else
+        //     {
+        //         //////////////////////////////////
+        //         if(evalSubtree(node->left_child,attribute,index)){
+        //         //////////////////////////////////
+        //         node = node->left_child;
+        //         ///////////////////
+        //         }else{
+        //             //printf("wanted left went right");
+        //             node = node->right_child;
+        //         }
+        //         ///////////////////
+        //     }
+        // }
+    struct StackNode* root = NULL;
+    struct StackNode* tempStacknode = NULL;
+    push(&root,node,1);
+    while(true){
+
+        while (!node->is_leaf) {
+            int location = index->settings->sax_bit_cardinality - 1 -
+            node->split_data->split_mask[node->split_data->splitpoint];
+            root_mask_type mask = index->settings->bit_masks[location];
+
+            if(sax[node->split_data->splitpoint] & mask)
+            {
+                node = node->right_child;
+                push(&root,node,1);
+            }
+            else
+            {
+                node = node->left_child;
+                push(&root,node,1);
+            }
+        }
+        tempStacknode=pop(&root);
+        if(evalSubtree(node,attribute,index))break;
+        
+        while(peek(root)!=NULL && peek(root)->time == 2){
+            tempStacknode = pop(&root);
+        }
+        if(tempStacknode->data->parent == NULL )break;//random nodes dist will be calced??
+        if(tempStacknode->data == (isax_node*)((isax_node*)tempStacknode->data->parent)->right_child){
+            node = (isax_node*)((isax_node*)node->parent)->left_child;
+        }else{
+            node = (isax_node*)((isax_node*)node->parent)->right_child;
+        }
+        if(peek(root)!=NULL && peek(root)->time == 1){
+            pop(&root);
+            push(&root,node->parent,2);
+        }
+
+
+    }
+
+        result.distance = calculate_node_distance_inmemory_with_attribute(index, node, ts, FLT_MAX,attribute);           // caclulate initial BSF/////////////////////////
+        result.node = node;
+    }
+    else {
+        printf("approximate_search_inmemory_pRecBuf_ekosmas: NO BSF has been computed! Bad Luck...\n");fflush(stdout);
+        result.node = NULL;
+        result.distance = FLT_MAX;
+    }
+
+    free(sax);
+
+    return result;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 query_result  approximate_search_inmemory_pRecBuf_ekosmas(ts_type *ts, ts_type *paa, isax_index *index) 
 {
     /////////////////////////////
@@ -117,7 +454,7 @@ query_result  approximate_search_inmemory_pRecBuf_ekosmas(ts_type *ts, ts_type *
             if(sax[node->split_data->splitpoint] & mask)
             {
                 //////////////////////////////////
-                if(evalSubtree(node->right_child,key)){
+                if(evalSubtree(node->right_child,key,index)){
                 //////////////////////////////////
                 node = node->right_child;
                 ///////////////
@@ -130,7 +467,7 @@ query_result  approximate_search_inmemory_pRecBuf_ekosmas(ts_type *ts, ts_type *
             else
             {
                 //////////////////////////////////
-                if(evalSubtree(node->left_child,key)){
+                if(evalSubtree(node->left_child,key,index)){
                 //////////////////////////////////
                 node = node->left_child;
                 ///////////////////
@@ -141,7 +478,7 @@ query_result  approximate_search_inmemory_pRecBuf_ekosmas(ts_type *ts, ts_type *
                 ///////////////////
             }
         }
-        result.distance = calculate_node_distance_inmemory_with_attribute(index, node, ts, FLT_MAX,key);           // caclulate initial BSF
+        result.distance = calculate_node_distance_inmemory_with_attribute(index, node, ts, FLT_MAX,key);           // caclulate initial BSF/////////////////////////
         result.node = node;
     }
     else {
@@ -291,13 +628,13 @@ float calculate_node_distance_inmemory (isax_index *index, isax_node *node, ts_t
     return bsf;
 }
 ////////////////////////////////////
-float calculate_node_distance_inmemory_with_attribute (isax_index *index, isax_node *node, ts_type *query, float bsf,int key) 
+float calculate_node_distance_inmemory_with_attribute (isax_index *index, isax_node *node, ts_type *query, float bsf,attribute_type* attribute) 
 {
     // If node has buffered data
     if (node->buffer != NULL) 
     {   
         for (int i=0; i<node->buffer->partial_buffer_size; i++) {
-            if(*node->buffer->partial_attribute_buffer[i] == key){
+            if(areAttributesEqual(node->buffer->partial_attribute_buffer[i],attribute,index->settings->attribute_size)){//TO BE COMPARED PROPERLY
             float dist = ts_euclidean_distance_SIMD(query, &(rawfile[*node->buffer->partial_position_buffer[i]]), index->settings->timeseries_size, bsf);
 
             if (dist < bsf) {
@@ -438,6 +775,44 @@ float calculate_node_distance2_inmemory (isax_index *index, isax_node *node, ts_
     
     return bsf;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+float calculate_node_distance2_inmemory_vorgias (isax_index *index, isax_node *node, ts_type *query, ts_type *paa, float bsf,attribute_type* attribute,isax_node_record ** record) 
+{
+    // If node has buffered data
+    if (node->buffer != NULL) 
+    {
+        for (int i=0; i<node->buffer->partial_buffer_size; i++) {
+            
+            if(areAttributesEqual(node->buffer->partial_attribute_buffer[i],attribute,index->settings->attribute_size)){ //TO BE COMPARED PROPERLY
+                //printf("attr %d found in node %d\n",*attribute,node->leaf_id);
+            float distmin = minidist_paa_to_isax_rawa_SIMD(paa, node->buffer->partial_sax_buffer[i],
+                                               index->settings->max_sax_cardinalities,
+                                               index->settings->sax_bit_cardinality,
+                                               index->settings->sax_alphabet_cardinality,
+                                               index->settings->paa_segments, MINVAL, MAXVAL,
+                                               index->settings->mindist_sqrt);
+            if (distmin<bsf) {
+                float dist = ts_euclidean_distance_SIMD(query, 
+                                                        &(rawfile[*node->buffer->partial_position_buffer[i]]), 
+                                                        index->settings->timeseries_size, 
+                                                        bsf);
+                if (dist < bsf) {
+                    bsf = dist;
+                    (*record)->attr = node->buffer->partial_attribute_buffer[i];
+                    (*record)->sax = node->buffer->partial_sax_buffer[i];
+                }  
+            }
+            }
+        }
+    }
+    
+    
+    
+    return bsf;
+}
+//////////////////////////////////////////////////////////////////////////////////
+
 float calculate_node_distance2_inmemory_ekosmas (isax_index *index, isax_node *node, ts_type *query, ts_type *paa, float bsf) 
 {
     // If node has buffered data

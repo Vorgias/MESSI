@@ -58,6 +58,12 @@ void destroy_node_buffer(isax_node_buffer *node_buffer) {
         free(node_buffer->tmp_partial_sax_buffer);
         node_buffer->tmp_partial_sax_buffer = NULL;
     }
+    ////////////////////////////////////////////////////////
+    if (node_buffer->partial_attribute_buffer != NULL) {
+        free(node_buffer->partial_attribute_buffer);
+        node_buffer->partial_attribute_buffer = NULL;
+    }
+    ////////////////////////////////////////////////////////
     free(node_buffer);
 }
 

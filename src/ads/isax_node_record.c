@@ -32,6 +32,13 @@ isax_node_record * isax_node_record_init(int sax_size, int ts_size,
         return NULL;
     }
     
+    record->attr = malloc(sizeof(attribute_type));////////////////////////////
+    if(record->ts == NULL) {
+        fprintf(stderr,"error: could not allocate memory for new record's attribute.\n");
+        return NULL;
+    }
+                                                //////////////////////////////
+                                                
     record->insertion_mode = mode;
     
     return record;
@@ -41,5 +48,6 @@ void isax_node_record_destroy(isax_node_record *node)
 {
     free(node->sax);
     free(node->ts);
+    free(node->attr);/////////
     free(node);
 }

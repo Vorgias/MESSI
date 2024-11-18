@@ -415,6 +415,94 @@ void insert_tree_node_m_hybridpqueue(float *paa,isax_node *node,isax_index *inde
 // -------------------------------------
 // -------------------------------------
 
+////////////////////////////////////////////////////////////
+query_result exact_search_ParISnew_inmemory_hybrid_vorgias(ts_type *ts, ts_type *paa, isax_index *index, node_list *nodelist,
+                           float minimum_distance,attribute_type*attribute) 
+{   
+    query_result bsf_result = approximate_search_inmemory_pRecBuf_vorgias(ts, paa, index,attribute);//////////////
+    SET_APPROXIMATE(bsf_result.distance);
+    printf("Bsf Result %f\n",bsf_result.distance);
+    // Early termination...
+    if (bsf_result.distance == 0) {
+        return bsf_result;
+    }
+
+    if (maxquerythread == 1) {
+        NUM_PRIORITY_QUEUES = 1;
+    }
+    else {
+        NUM_PRIORITY_QUEUES = maxquerythread/2;
+    }
+
+    pqueue_t **allpq = malloc(sizeof(pqueue_t*)*NUM_PRIORITY_QUEUES);
+    int queuelabel[NUM_PRIORITY_QUEUES];                                            // EKOSMAS, 21 SEPTEMBER 2020: REMOVED
+
+    pthread_t threadid[maxquerythread];
+    MESSI_workerdata_ekosmas workerdata[maxquerythread];
+    pthread_mutex_t lock_bsf = PTHREAD_MUTEX_INITIALIZER;                   // EKOSMAS, 29 AUGUST 2020: Changed this to mutex
+    pthread_barrier_t lock_barrier;
+    pthread_barrier_init(&lock_barrier, NULL, maxquerythread);
+
+    pthread_mutex_t ququelock[NUM_PRIORITY_QUEUES];
+    for (int i = 0; i < NUM_PRIORITY_QUEUES; i++)
+    {
+        allpq[i] = pqueue_init(index->settings->root_nodes_size/NUM_PRIORITY_QUEUES, cmp_pri, get_pri, set_pri, get_pos, set_pos);
+        pthread_mutex_init(&ququelock[i], NULL);
+        queuelabel[i]=1;                                                 
+    }
+
+    volatile int node_counter = 0;                                              // EKOSMAS, 29 AUGUST 2020: added volatile
+
+    // EKOSMAS: change this so that only i is passed as an argument and all the others are only once in som global variable.
+    for (int i = 0; i < maxquerythread; i++)
+    {
+        workerdata[i].ts = ts;                                                  // query ts
+        workerdata[i].paa = paa;                                                // query paa
+        workerdata[i].lock_bsf = &lock_bsf;                                     // a lock to update BSF
+        workerdata[i].nodelist = nodelist->nlist;                               // the list of subtrees
+        workerdata[i].amountnode = nodelist->node_amount;                       // the total number of (non empty) subtrees
+        workerdata[i].index = index;
+        workerdata[i].minimum_distance = minimum_distance;                      // its value is FTL_MAX
+        workerdata[i].node_counter = &node_counter;                             // a counter to perform FAI and acquire subtrees
+        workerdata[i].bsf_result = &bsf_result;                                 // the BSF
+        workerdata[i].lock_barrier = &lock_barrier;                             // barrier between queue inserts and queue pops
+        workerdata[i].alllock = ququelock;                                      // all queues' locks
+        workerdata[i].allqueuelabel = queuelabel;                               // ??? How is this used?         
+        workerdata[i].allpq = allpq;                                            // priority queues
+        workerdata[i].startqueuenumber = i%NUM_PRIORITY_QUEUES;                            // initial priority queue to start
+        workerdata[i].workernumber = i;
+        /////////////////////////////////////////////
+        workerdata[i].attribute = attribute;
+        /////////////////////////////////////////////
+    }
+        
+    for (int i = 0; i < maxquerythread; i++) {
+        pthread_create(&(threadid[i]), NULL, exact_search_worker_inmemory_hybridpqueue_vorgias, (void*)&(workerdata[i]));
+    }
+    for (int i = 0; i < maxquerythread; i++) {
+        pthread_join(threadid[i], NULL);
+    }
+
+    pthread_barrier_destroy(&lock_barrier);
+
+    // Free the priority queue.
+    for (int i = 0; i < NUM_PRIORITY_QUEUES; i++)
+    {
+        pqueue_free(allpq[i]);
+    }
+    free(allpq);
+    if(bsf_result.record!=NULL){
+        for(int i=0;i<index->settings->attribute_size;i++){
+            printf("\nResult has attribute: (%d) %d\n",i,bsf_result.record->attr[i]);
+        }
+    //printf("Result has attribute : %d\n",*(bsf_result.record->attr));
+    }
+    return bsf_result;
+
+    // Free the nodes that where not popped.
+}
+///////////////////////////////////////////////////////////////////////////
+
 // ekosmas version
 query_result exact_search_ParISnew_inmemory_hybrid_ekosmas(ts_type *ts, ts_type *paa, isax_index *index, node_list *nodelist,
                            float minimum_distance) 
@@ -494,6 +582,51 @@ query_result exact_search_ParISnew_inmemory_hybrid_ekosmas(ts_type *ts, ts_type 
     // Free the nodes that where not popped.
 }
 
+///////////////////////////////////////////////////////////////////////////
+int process_queue_node_vorgias(MESSI_workerdata_ekosmas *input_data, int i, int *checks,attribute_type*attribute)
+{
+    pthread_mutex_lock(&(input_data->alllock[i]));
+    query_result *n = pqueue_pop(input_data->allpq[i]);
+    pthread_mutex_unlock(&(input_data->alllock[i]));
+    if(n == NULL) {
+        return 0;
+    }
+
+    query_result *bsf_result = input_data->bsf_result;
+    float bsfdisntance = bsf_result->distance;
+    isax_node_record * record =malloc(sizeof(isax_node_record));////////////////////////////////
+    if (n->distance > bsfdisntance || n->distance > input_data->minimum_distance) {         // The best node has a worse mindist, so search is finished!
+        return 0;
+    }
+    else {
+        // If it is a leaf, check its real distance.
+        if (((isax_node*)n->node)->is_leaf) {
+            (*checks)++;                                                                    // This is just for debugging. It can be removed!
+
+            float distance = calculate_node_distance2_inmemory_vorgias(input_data->index, n->node, input_data->ts, input_data->paa, bsfdisntance,attribute,&record);
+            if (distance < bsfdisntance) {
+                pthread_mutex_lock(input_data->lock_bsf);
+                if(distance < bsf_result->distance)
+                {
+                    bsf_result->distance = distance;
+                    bsf_result->node = n->node;
+                    free(bsf_result->record);
+                    bsf_result->record = record;//////////////////////////////////
+                }else{
+                    free(record);
+                }
+                pthread_mutex_unlock(input_data->lock_bsf);
+            }
+
+        }
+        
+    }
+    free(n);
+
+    return 1;
+}
+//////////////////////////////////////////////////////////////////////////////////////
+
 int process_queue_node_ekosmas(MESSI_workerdata_ekosmas *input_data, int i, int *checks)
 {
     pthread_mutex_lock(&(input_data->alllock[i]));
@@ -531,6 +664,98 @@ int process_queue_node_ekosmas(MESSI_workerdata_ekosmas *input_data, int i, int 
 
     return 1;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////
+void* exact_search_worker_inmemory_hybridpqueue_vorgias(void *rfdata)
+{   
+    threadPin(((MESSI_workerdata_ekosmas*)rfdata)->workernumber, maxquerythread);
+
+    isax_node *current_root_node;
+
+    MESSI_workerdata_ekosmas *input_data = (MESSI_workerdata_ekosmas*)rfdata;
+
+    isax_index *index = input_data->index;
+    ts_type *paa = input_data->paa;
+    
+    query_result *bsf_result = input_data->bsf_result;
+    float bsfdisntance = bsf_result->distance;
+    int tnumber = rand()% NUM_PRIORITY_QUEUES;
+    int startqueuenumber = input_data->startqueuenumber;
+    
+    // A. Populate Queues
+    //COUNT_QUEUE_TIME_START
+    if (input_data->workernumber == 0) {
+        COUNT_QUEUE_FILL_TIME_START
+    }
+    while (1) {
+            int current_root_node_number = __sync_fetch_and_add(input_data->node_counter, 1);
+            if(current_root_node_number >= input_data->amountnode) {
+                break;
+            }
+
+            current_root_node=input_data->nodelist[current_root_node_number];
+            if(evalSubtree(current_root_node,input_data->attribute,index)){////////////////////////////////////////
+                //printf("inserting root node %d\n",current_root_node_number);
+                insert_tree_node_m_hybridpqueue_vorgias(paa, current_root_node, index, bsfdisntance, input_data->allpq, input_data->alllock, &tnumber,input_data->attribute);            
+            }
+    }
+
+    // Wait all threads to fill in queues
+    pthread_barrier_wait(input_data->lock_barrier);
+
+    // B. Processing my queue
+    if (input_data->workernumber == 0) {
+        COUNT_QUEUE_FILL_TIME_END
+        COUNT_QUEUE_PROCESS_TIME_START
+    }
+    int checks = 0;                                                                     // This is just for debugging. It can be removed!
+    while (process_queue_node_vorgias(input_data, startqueuenumber, &checks,input_data->attribute)) {     ///////////////////////////////////////////////////////////////////    // while a candidate queue node with smaller distance exists, compute actual distances
+        ;
+    }
+
+    // C. Free any element left in my queue
+    if( (input_data->allqueuelabel[startqueuenumber])==1)
+    {
+        (input_data->allqueuelabel[startqueuenumber])=0;
+        pthread_mutex_lock(&(input_data->alllock[startqueuenumber]));
+        query_result *n;
+        while(n = pqueue_pop(input_data->allpq[startqueuenumber]))
+        {
+            free(n);
+        }
+        pthread_mutex_unlock(&(input_data->alllock[startqueuenumber]));
+    }
+
+
+    if (input_data->workernumber == 0) {
+        COUNT_QUEUE_PROCESS_HELP_TIME_START
+    }
+
+    // D. Process other uncompleted queues
+    while(1)                                                                    // ??? EKOSMAS: Why is this while(1) required?
+    {         
+        bool finished = true;
+        for (int i = 0; i < NUM_PRIORITY_QUEUES; i++) {
+            if((input_data->allqueuelabel[i]) == 1) {
+                finished = false;
+                while(process_queue_node_vorgias(input_data, i, &checks,input_data->attribute)) {//////////////////////////////////////////////////////////////////
+                    ;
+                }
+            }
+        }
+
+        if (finished) {
+            break;
+        }
+    }   
+
+    if (input_data->workernumber == 0) {
+        COUNT_QUEUE_PROCESS_HELP_TIME_END
+        COUNT_QUEUE_PROCESS_TIME_END
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // ekosmas version
 void* exact_search_worker_inmemory_hybridpqueue_ekosmas(void *rfdata)
@@ -618,6 +843,57 @@ void* exact_search_worker_inmemory_hybridpqueue_ekosmas(void *rfdata)
         COUNT_QUEUE_PROCESS_TIME_END
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void insert_tree_node_m_hybridpqueue_vorgias(float *paa, isax_node *node, isax_index *index, float bsf, pqueue_t **pq, pthread_mutex_t *lock_queue, int *tnumber,attribute_type* attribute)
+{   
+
+    // printf ("executing insert_tree_node_m_hybridpqueue_ekosmas\n");
+
+    //COUNT_CAL_TIME_START
+    // ??? EKOSMAS: Why not using SIMD version of the following function?
+    float distance =  minidist_paa_to_isax(paa, node->isax_values,
+                                            node->isax_cardinalities,
+                                            index->settings->sax_bit_cardinality,
+                                            index->settings->sax_alphabet_cardinality,
+                                            index->settings->paa_segments,
+                                            MINVAL, MAXVAL,
+                                            index->settings->mindist_sqrt);
+    //COUNT_CAL_TIME_END
+
+
+    if(distance < bsf)
+    {
+        if (node->is_leaf) 
+        {   
+            //printf("inserting leaf %d\n",node->leaf_id);
+            query_result * mindist_result = malloc(sizeof(query_result));
+            mindist_result->node = node;
+            mindist_result->distance = distance;
+            pthread_mutex_lock(&lock_queue[*tnumber]);
+            pqueue_insert(pq[*tnumber], mindist_result);
+            pthread_mutex_unlock(&lock_queue[*tnumber]);
+            *tnumber=(*tnumber+1)%NUM_PRIORITY_QUEUES;
+        }
+        else
+        {   
+
+            if (((isax_node*)node->left_child)->isax_cardinalities != NULL && evalSubtree(node->left_child,attribute,index))/////////////////////////////                                                       // ??? EKOSMAS: Can this be NULL, while node is not leaf???
+            {
+                //printf("inserting left %d\n",*attribute);
+                insert_tree_node_m_hybridpqueue_vorgias(paa,node->left_child,index, bsf,pq,lock_queue,tnumber,attribute);
+            }
+            if (((isax_node*)node->right_child)->isax_cardinalities != NULL && evalSubtree(node->right_child,attribute,index))/////////////////////////////                                                     // ??? EKOSMAS: Can this be NULL, while node is not leaf???
+            {
+                //printf("inserting right \n",*attribute);
+                insert_tree_node_m_hybridpqueue_vorgias(paa,node->right_child,index,bsf,pq,lock_queue,tnumber,attribute);
+            }
+        }
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////
+
+
 // ekosmas version
 void insert_tree_node_m_hybridpqueue_ekosmas(float *paa, isax_node *node, isax_index *index, float bsf, pqueue_t **pq, pthread_mutex_t *lock_queue, int *tnumber)
 {   
