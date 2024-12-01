@@ -610,10 +610,10 @@ int process_queue_node_vorgias(MESSI_workerdata_ekosmas *input_data, int i, int 
                 {
                     bsf_result->distance = distance;
                     bsf_result->node = n->node;
-                    free(bsf_result->record);//////////////////////////////////
+                    //free(bsf_result->record);//////////////////////////////////
                     bsf_result->record = record;//////////////////////////////////
                 }else{
-                    free(record);
+                    //free(record);
                 }
                 pthread_mutex_unlock(input_data->lock_bsf);
             }

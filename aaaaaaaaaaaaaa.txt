@@ -12,187 +12,191 @@ attributes number == query number
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
-67663440 pushed to stack
-Bsf Result 69.838364
+attribute: (2) 0
+-1744284768 pushed to stack
+Bsf Result 223.896088
 
-Result has attribute: (0) 1
+Result has attribute: (0) 7
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 69.838364	 67.218185	
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 223.896088	 89.875496	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
-
-attribute: (0) 1
-
-attribute: (1) 1
-
-attribute: (2) 1
-1342242592 pushed to stack
-1825688752 pushed to stack
--297937616 pushed to stack
--300484832 pushed to stack
-1821875216 pushed to stack
-1834630064 pushed to stack
-1834630576 pushed to stack
-1834631248 pushed to stack
-Bsf Result 32.669575
 
-Result has attribute: (0) 1
+attribute: (0) 0
 
-Result has attribute: (1) 1
+[?2004l: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 32.669575	 29.742928	
+attribute: (2) 3
+201391904 pushed to stack
+737249904 pushed to stack
+710348384 pushed to stack
+710329296 pushed to stack
+-390755488 pushed to stack
+-390378256 pushed to stack
+-390377744 pushed to stack
+-390377072 pushed to stack
+Bsf Result 38.271652
+0	 0	 0	 0	 0	 38.271652	 38.271652	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 8
 
-attribute: (1) 1
+attribute: (1) 0
 
-attribute: (2) 1
--66809264 pushed to stack
-93709440 pushed to stack
-Bsf Result 63.383797
+attribute: (2) 6
+-1140572256 pushed to stack
+1805445440 pushed to stack
+Bsf Result 186.933685
 
-Result has attribute: (0) 1
+Result has attribute: (0) 8
 
-Result has attribute: (1) 1
+Result has attribute: (1) 0
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 63.383797	 56.185474	
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 186.933685	 124.508018	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 3
 
-attribute: (1) 1
+attribute: (1) 4
 
-attribute: (2) 1
-1879262784 pushed to stack
-518592368 pushed to stack
-493946816 pushed to stack
-471307328 pushed to stack
-Bsf Result 20.362728
+attribute: (2) 8
+469976640 pushed to stack
+224858288 pushed to stack
+224839904 pushed to stack
+262791984 pushed to stack
+Bsf Result 39.541981
 
-Result has attribute: (0) 1
+Result has attribute: (0) 3
 
-Result has attribute: (1) 1
+Result has attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 20.362728	 17.664511	
+Result has attribute: (2) 8
+0	 0	 0	 0	 0	 39.541981	 37.226559	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 3
 
-attribute: (2) 1
-1879112208 pushed to stack
--1978091488 pushed to stack
--1978105952 pushed to stack
--1978105280 pushed to stack
--1978093184 pushed to stack
-Bsf Result 31.055769
+attribute: (2) 8
+469826064 pushed to stack
+1041779600 pushed to stack
+1041765072 pushed to stack
+1041765744 pushed to stack
+1041828992 pushed to stack
+1041765744 pushed to stack
+1041902624 pushed to stack
+1041829248 pushed to stack
+1041829248 pushed to stack
+Bsf Result 65.251961
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
-Result has attribute: (1) 1
+Result has attribute: (1) 3
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 31.055769	 22.645781	
+Result has attribute: (2) 8
+0	 0	 0	 0	 0	 65.251961	 54.873371	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 5
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
--402193936 pushed to stack
-Bsf Result 125.383057
+attribute: (2) 2
+1946625184 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 5
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 125.383057	 73.664558	
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 123.813171	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
-1879198320 pushed to stack
-1041351024 pushed to stack
-1041335968 pushed to stack
-1041336640 pushed to stack
-1041344352 pushed to stack
-1041656304 pushed to stack
-1041660016 pushed to stack
-Bsf Result 22.839146
-0	 0	 0	 0	 0	 22.839146	 22.839146	
+attribute: (2) 0
+469912176 pushed to stack
+-1922791136 pushed to stack
+-1922806192 pushed to stack
+-1922805520 pushed to stack
+-1922795088 pushed to stack
+-1922341168 pushed to stack
+-1922336592 pushed to stack
+Bsf Result 49.503284
+
+Result has attribute: (0) 7
 
+Result has attribute: (1) 5
+
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 49.503284	 45.460003	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-1411174592 pushed to stack
-Bsf Result 90.488884
+attribute: (2) 0
+-199447024 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 90.488884	 62.560738	
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 147.770950	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
--326706912 pushed to stack
-Bsf Result 120.000237
+attribute: (2) 2
+-1467552272 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 120.000237	 97.405510	
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 136.742142	
 
 --------------------------------------------------------------
 
@@ -200,170 +204,168 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
-1879059216 pushed to stack
--177934176 pushed to stack
--177933664 pushed to stack
--177407216 pushed to stack
--177418768 pushed to stack
--177417904 pushed to stack
-Bsf Result 21.552059
+attribute: (2) 7
+469773072 pushed to stack
+2103452112 pushed to stack
+2103815184 pushed to stack
+2104056976 pushed to stack
+2104317600 pushed to stack
+2104604496 pushed to stack
+Bsf Result 41.391914
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 2
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 21.552059	 19.246832	
+Result has attribute: (2) 7
+0	 0	 0	 0	 0	 41.391914	 36.903233	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 3
 
-attribute: (1) 1
+attribute: (1) 0
 
 attribute: (2) 1
-1879125456 pushed to stack
-735256912 pushed to stack
-Bsf Result 13.207579
-0	 0	 0	 0	 0	 13.207579	 13.207579	
+469839312 pushed to stack
+-1617854336 pushed to stack
+Bsf Result 51.478111
+
+Result has attribute: (0) 3
+
+Result has attribute: (1) 0
 
+Result has attribute: (2) 1
+0	 0	 0	 0	 0	 51.478111	 31.672657	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 3
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-1476456768 pushed to stack
-Bsf Result 52.240463
+attribute: (2) 4
+-671026880 pushed to stack
+Bsf Result 183.885712
 
-Result has attribute: (0) 1
+Result has attribute: (0) 3
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 52.240463	 40.271507	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 183.885712	 51.899952	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 4
 
-attribute: (2) 1
--1811278096 pushed to stack
-Bsf Result 86.092712
+attribute: (2) 4
+738865840 pushed to stack
+Bsf Result 151.127075
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
-Result has attribute: (1) 1
+Result has attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 86.092712	 68.596840	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 151.127075	 95.851685	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
-
-attribute: (1) 1
-
-attribute: (2) 1
-872488944 pushed to stack
--547069408 pushed to stack
--548334912 pushed to stack
--550732208 pushed to stack
-406914240 pushed to stack
-406919168 pushed to stack
-406920032 pushed to stack
-407150432 pushed to stack
-407156736 pushed to stack
-Bsf Result 13.618737
-0	 0	 0	 0	 0	 13.618737	 13.618737	
+attribute: (0) 3
 
---------------------------------------------------------------
+attribute: (1) 7
 
---------------------------------------------------------------
+attribute: (2) 6
+-939450384 pushed to stack
+1472736256 pushed to stack
+1470936064 pushed to stack
+1465618480 pushed to stack
+-995893312 pushed to stack
+-995887520 pushed to stack
+-995886656 pushed to stack
+-995608336 pushed to stack
+-995553984 pushed to stack
+Bsf Result 25.005463
 
-attribute: (0) 1
+Result has attribute: (0) 3
 
-attribute: (1) 1
+Result has attribute: (1) 7
 
-attribute: (2) 1
-1879105584 pushed to stack
-1098095952 pushed to stack
-612012224 pushed to stack
-611893168 pushed to stack
-Bsf Result 17.240339
-0	 0	 0	 0	 0	 17.240339	 17.240339	
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 25.005463	 18.170401	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
-268867392 pushed to stack
-Bsf Result 80.019814
+attribute: (2) 8
+469819440 pushed to stack
+-546697552 pushed to stack
+-545207680 pushed to stack
+-546701344 pushed to stack
+Bsf Result 53.907749
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 2
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 80.019814	 68.622223	
+Result has attribute: (2) 8
+0	 0	 0	 0	 0	 53.907749	 35.804882	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-1208376128 pushed to stack
-Bsf Result 63.433350
+attribute: (2) 4
+-1341747120 pushed to stack
+Bsf Result 164.404282
 
-Result has attribute: (0) 1
+Result has attribute: (0) 7
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 63.433350	 46.663895	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 164.404282	 141.121857	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 4
 
-attribute: (2) 1
-1409387168 pushed to stack
--1775262528 pushed to stack
-Bsf Result 32.708626
+attribute: (2) 8
+-469345472 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 32.708626	 23.963139	
+Result has attribute: (2) 8
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 88.202621	
 
 --------------------------------------------------------------
 
@@ -372,17 +374,12 @@ Result has attribute: (2) 1
 attribute: (0) 1
 
 attribute: (1) 1
-
-attribute: (2) 1
-1611840464 pushed to stack
-Bsf Result 71.757881
-
-Result has attribute: (0) 1
-
-Result has attribute: (1) 1
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 71.757881	 61.561089	
+attribute: (2) 7
+470052576 pushed to stack
+-645564304 pushed to stack
+Bsf Result 46.842793
+0	 0	 0	 0	 0	 46.842793	 46.842793	
 
 --------------------------------------------------------------
 
@@ -390,129 +387,137 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-137501536 pushed to stack
-Bsf Result 186.518112
+attribute: (2) 4
+336777376 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 186.518112	 147.986023	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 128.450699	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
 attribute: (1) 1
 
-attribute: (2) 1
-1879105584 pushed to stack
-1139749152 pushed to stack
-1126646976 pushed to stack
-1098084096 pushed to stack
-610270992 pushed to stack
-611829088 pushed to stack
-611829952 pushed to stack
-611832544 pushed to stack
-612065456 pushed to stack
-612066576 pushed to stack
-Bsf Result 14.135007
-0	 0	 0	 0	 0	 14.135007	 14.135007	
+attribute: (2) 6
+-1607320048 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
---------------------------------------------------------------
+Result has attribute: (0) 2
 
---------------------------------------------------------------
+Result has attribute: (1) 1
 
-attribute: (0) 1
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 193.495300	
 
-attribute: (1) 1
+--------------------------------------------------------------
 
-attribute: (2) 1
--939246624 pushed to stack
-Bsf Result 57.189323
+--------------------------------------------------------------
 
-Result has attribute: (0) 1
+attribute: (0) 7
 
-Result has attribute: (1) 1
+attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 57.189323	 43.880775	
+attribute: (2) 4
+469819440 pushed to stack
+-546691184 pushed to stack
+-580818016 pushed to stack
+-580830720 pushed to stack
+-553980848 pushed to stack
+-546963680 pushed to stack
+-546963008 pushed to stack
+-546849760 pushed to stack
+-546704832 pushed to stack
+-546703904 pushed to stack
+-546704832 pushed to stack
+-545620560 pushed to stack
+Bsf Result 23.209526
+0	 0	 0	 0	 0	 23.209526	 23.209526	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 5
 
 attribute: (2) 1
-1879079088 pushed to stack
-2037322432 pushed to stack
-2037538880 pushed to stack
-2037539392 pushed to stack
-Bsf Result 47.766376
+1745102608 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 47.766376	 34.856804	
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 94.144745	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 0
 
-attribute: (2) 1
--1073667296 pushed to stack
-Bsf Result 81.136055
-0	 0	 0	 0	 0	 81.136055	 81.136055	
+attribute: (2) 3
+469792944 pushed to stack
+-1721472080 pushed to stack
+-1721035392 pushed to stack
+-1721034880 pushed to stack
+Bsf Result 58.370632
+0	 0	 0	 0	 0	 58.370632	 58.370632	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
-1879105584 pushed to stack
-1098095952 pushed to stack
-612012224 pushed to stack
-611893168 pushed to stack
-Bsf Result 42.268253
-0	 0	 0	 0	 0	 42.268253	 42.268253	
+attribute: (2) 2
+2080451088 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
+
+Result has attribute: (0) 6
 
+Result has attribute: (1) 2
+
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 117.256790	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 4
 
-attribute: (1) 1
+attribute: (1) 0
 
-attribute: (2) 1
--1342148160 pushed to stack
-Bsf Result 52.452358
+attribute: (2) 4
+469819440 pushed to stack
+-546697552 pushed to stack
+-545207680 pushed to stack
+-546701344 pushed to stack
+Bsf Result 120.068001
 
-Result has attribute: (0) 1
+Result has attribute: (0) 4
 
-Result has attribute: (1) 1
+Result has attribute: (1) 0
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 52.452358	 42.681149	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 120.068001	 62.534321	
 
 --------------------------------------------------------------
 
@@ -520,81 +525,81 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 7
 
 attribute: (2) 1
--1073562272 pushed to stack
-Bsf Result 32.886730
+1543531216 pushed to stack
+Bsf Result 121.423798
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 32.886730	 29.030706	
+0	 0	 0	 0	 0	 121.423798	 76.996567	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 3
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
--1609642240 pushed to stack
-Bsf Result 64.524277
+attribute: (2) 5
+2080552560 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 3
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 64.524277	 43.100029	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 53.544228	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-872488944 pushed to stack
--547069408 pushed to stack
--548334912 pushed to stack
--550732208 pushed to stack
-406914240 pushed to stack
-406919168 pushed to stack
-406920288 pushed to stack
-Bsf Result 36.914433
+attribute: (2) 5
+1208933600 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 36.914433	 28.489500	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 97.451546	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
--200651632 pushed to stack
-Bsf Result 44.779106
+attribute: (2) 4
+-939450384 pushed to stack
+1472736256 pushed to stack
+1470936064 pushed to stack
+1465618480 pushed to stack
+-995893312 pushed to stack
+-995887520 pushed to stack
+-995886400 pushed to stack
+Bsf Result 96.358292
 
-Result has attribute: (0) 1
+Result has attribute: (0) 7
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 44.779106	 39.460957	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 96.358292	 43.655510	
 
 --------------------------------------------------------------
 
@@ -602,347 +607,354 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-874684512 pushed to stack
-Bsf Result 49.083454
+attribute: (2) 3
+-1945489200 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 49.083454	 35.156822	
+Result has attribute: (2) 3
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 81.888382	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 5
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-1610643152 pushed to stack
-Bsf Result 18.205677
+attribute: (2) 5
+-937295664 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 5
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 18.205677	 14.460573	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 57.699749	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 8
 
-attribute: (1) 1
+attribute: (1) 5
 
 attribute: (2) 1
-1879105584 pushed to stack
-1139749152 pushed to stack
-1126646976 pushed to stack
-1096991872 pushed to stack
-611677392 pushed to stack
-611828384 pushed to stack
-611831072 pushed to stack
-612004448 pushed to stack
-612005312 pushed to stack
-612007040 pushed to stack
-612009024 pushed to stack
-612063984 pushed to stack
-Bsf Result 21.287241
+335576512 pushed to stack
+Bsf Result 49.322605
 
-Result has attribute: (0) 1
+Result has attribute: (0) 8
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 21.287241	 18.837202	
+0	 0	 0	 0	 0	 49.322605	 37.398472	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-1342186528 pushed to stack
-92268528 pushed to stack
-Bsf Result 23.146582
-0	 0	 0	 0	 0	 23.146582	 23.146582	
+attribute: (2) 0
+469819440 pushed to stack
+-546691184 pushed to stack
+-580818016 pushed to stack
+-580836944 pushed to stack
+-553980592 pushed to stack
+-546964192 pushed to stack
+-546850848 pushed to stack
+-545213728 pushed to stack
+-545213056 pushed to stack
+-545211040 pushed to stack
+-545209440 pushed to stack
+Bsf Result 83.743324
 
+Result has attribute: (0) 7
+
+Result has attribute: (1) 7
+
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 83.743324	 37.712402	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
-1610672720 pushed to stack
-Bsf Result 36.425240
+attribute: (2) 2
+201335840 pushed to stack
+494467024 pushed to stack
+Bsf Result 47.206799
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 2
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 36.425240	 26.641905	
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 47.206799	 37.078102	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
-
-attribute: (0) 1
 
-attribute: (1) 1
-
-attribute: (2) 1
--1341901104 pushed to stack
-Bsf Result 39.754356
-
-Result has attribute: (0) 1
+attribute: (0) 3
 
-Result has attribute: (1) 1
+attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 39.754356	 39.404373	
+attribute: (2) 2
+335607856 pushed to stack
+Bsf Result 52.574047
+0	 0	 0	 0	 0	 52.574047	 52.574047	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
-1476723360 pushed to stack
-Bsf Result 117.160278
+attribute: (2) 8
+1543776496 pushed to stack
+Bsf Result 111.020325
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 117.160278	 69.815887	
+Result has attribute: (2) 8
+0	 0	 0	 0	 0	 111.020325	 63.665607	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 0
 
-attribute: (2) 1
-872551632 pushed to stack
--1953444976 pushed to stack
--1975582816 pushed to stack
--1975746592 pushed to stack
--1975913504 pushed to stack
--1951117840 pushed to stack
--1951114640 pushed to stack
--1951979488 pushed to stack
--1951978624 pushed to stack
--1950598384 pushed to stack
-Bsf Result 19.754850
+attribute: (2) 7
+-670765616 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 7
 
-Result has attribute: (1) 1
+Result has attribute: (1) 0
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 19.754850	 15.571377	
+Result has attribute: (2) 7
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 113.685951	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 0
 
-attribute: (2) 1
-1879151952 pushed to stack
-194315920 pushed to stack
-160390576 pushed to stack
--132714240 pushed to stack
--132711104 pushed to stack
-Bsf Result 31.272762
+attribute: (2) 5
+335569888 pushed to stack
+1977690624 pushed to stack
+1969566960 pushed to stack
+1981715472 pushed to stack
+1969340368 pushed to stack
+-1335808672 pushed to stack
+-1335517648 pushed to stack
+-1335516784 pushed to stack
+-1335515920 pushed to stack
+-1335509616 pushed to stack
+Bsf Result 51.304337
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
-Result has attribute: (1) 1
+Result has attribute: (1) 0
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 31.272762	 25.840820	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 51.304337	 26.053850	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 6
 
-attribute: (2) 1
-1879262784 pushed to stack
-536809072 pushed to stack
-513608688 pushed to stack
-471101920 pushed to stack
-Bsf Result 36.286762
+attribute: (2) 2
+469865808 pushed to stack
+-1202799456 pushed to stack
+1164182624 pushed to stack
+-1202364832 pushed to stack
+-1202265792 pushed to stack
+Bsf Result 151.559006
 
-Result has attribute: (0) 1
+Result has attribute: (0) 7
 
-Result has attribute: (1) 1
+Result has attribute: (1) 6
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 36.286762	 31.157824	
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 151.559006	 46.703171	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
-872488944 pushed to stack
--547069408 pushed to stack
--548334912 pushed to stack
--560698256 pushed to stack
-406645936 pushed to stack
-406765040 pushed to stack
-406918304 pushed to stack
-406924608 pushed to stack
-Bsf Result 8.744857
+attribute: (2) 0
+469976640 pushed to stack
+258915040 pushed to stack
+224852720 pushed to stack
+262791472 pushed to stack
+Bsf Result 92.302452
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 8.744857	 7.898257	
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 92.302452	 42.015797	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 4
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-1476470016 pushed to stack
-575861472 pushed to stack
-Bsf Result 27.611847
-0	 0	 0	 0	 0	 27.611847	 27.611847	
+attribute: (2) 5
+-939450384 pushed to stack
+1472736256 pushed to stack
+1470936064 pushed to stack
+1435956864 pushed to stack
+-995898752 pushed to stack
+-995896768 pushed to stack
+-995888384 pushed to stack
+-995611536 pushed to stack
+Bsf Result 45.451889
+
+Result has attribute: (0) 4
+
+Result has attribute: (1) 8
+
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 45.451889	 17.505037	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-742624336 pushed to stack
-Bsf Result 75.775314
+attribute: (2) 8
+-1073681360 pushed to stack
+-1238527840 pushed to stack
+Bsf Result 98.655228
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 75.775314	 69.195671	
+Result has attribute: (2) 8
+0	 0	 0	 0	 0	 98.655228	 52.727100	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
--1945291584 pushed to stack
-Bsf Result 83.938911
-0	 0	 0	 0	 0	 83.938911	 83.938911	
+attribute: (2) 4
+-800899072 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
+Result has attribute: (0) 0
+
+Result has attribute: (1) 5
+
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 125.164986	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
-872965104 pushed to stack
-Bsf Result 25.915663
+attribute: (2) 4
+873280704 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 25.915663	 24.887848	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 122.928215	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-2013352400 pushed to stack
-494076480 pushed to stack
-Bsf Result 38.653568
+attribute: (2) 0
+1879298352 pushed to stack
+Bsf Result 57.851711
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 38.653568	 36.793659	
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 57.851711	 50.781929	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 3
 
-attribute: (2) 1
-1879105584 pushed to stack
-1139749152 pushed to stack
-1098090320 pushed to stack
-611831680 pushed to stack
-611955920 pushed to stack
-612064592 pushed to stack
-612067184 pushed to stack
-Bsf Result 15.621202
+attribute: (2) 3
+1879113504 pushed to stack
+967514032 pushed to stack
+1879113504 pushed to stack
+966057392 pushed to stack
+Bsf Result 160.726151
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
-Result has attribute: (1) 1
+Result has attribute: (1) 3
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 15.621202	 14.543778	
+Result has attribute: (2) 3
+0	 0	 0	 0	 0	 160.726151	 96.354225	
 
 --------------------------------------------------------------
 
@@ -950,75 +962,79 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 0
 
 attribute: (2) 1
-1879059216 pushed to stack
--177934176 pushed to stack
--177933664 pushed to stack
--177407216 pushed to stack
--177418768 pushed to stack
--177417904 pushed to stack
-Bsf Result 37.755020
+469819440 pushed to stack
+-546691184 pushed to stack
+-580825120 pushed to stack
+-546850432 pushed to stack
+-546848832 pushed to stack
+-546705504 pushed to stack
+-546702464 pushed to stack
+Bsf Result 26.467413
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 0
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 37.755020	 31.179916	
+0	 0	 0	 0	 0	 26.467413	 26.123878	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
-872551632 pushed to stack
--1953444976 pushed to stack
--1975582816 pushed to stack
--1975746592 pushed to stack
--1951120112 pushed to stack
--1951119856 pushed to stack
--1951119344 pushed to stack
--1951118832 pushed to stack
--1951977504 pushed to stack
--1951976032 pushed to stack
--1951974912 pushed to stack
-Bsf Result 15.930969
+attribute: (2) 2
+469773072 pushed to stack
+2103452112 pushed to stack
+2103815184 pushed to stack
+2104056976 pushed to stack
+2104317600 pushed to stack
+2104604496 pushed to stack
+Bsf Result 125.400009
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
-Result has attribute: (1) 1
+Result has attribute: (1) 2
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 15.930969	 14.838616	
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 125.400009	 54.796352	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-1879151952 pushed to stack
-160396592 pushed to stack
-160366000 pushed to stack
--132713536 pushed to stack
--132707904 pushed to stack
-Bsf Result 32.663769
+attribute: (2) 6
+335569888 pushed to stack
+1977690624 pushed to stack
+1969566960 pushed to stack
+1981715472 pushed to stack
+1972023712 pushed to stack
+1972023968 pushed to stack
+-1336569184 pushed to stack
+-1336568672 pushed to stack
+-1335514800 pushed to stack
+-1335513328 pushed to stack
+-1335511344 pushed to stack
+-1335513328 pushed to stack
+-1335510480 pushed to stack
+Bsf Result 35.634884
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 32.663769	 31.795828	
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 35.634884	 22.690838	
 
 --------------------------------------------------------------
 
@@ -1026,18 +1042,22 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
-1415924304 pushed to stack
-Bsf Result 162.927704
+attribute: (2) 2
+469865808 pushed to stack
+1164188544 pushed to stack
+1164163392 pushed to stack
+-1202267520 pushed to stack
+-1202214544 pushed to stack
+Bsf Result 87.961235
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 162.927704	 114.793488	
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 87.961235	 46.000183	
 
 --------------------------------------------------------------
 
@@ -1045,325 +1065,349 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 0
 
 attribute: (2) 1
-1476456768 pushed to stack
-Bsf Result 61.113342
+-194706192 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 0
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 61.113342	 53.991634	
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 196.236206	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 4
 
 attribute: (1) 1
 
-attribute: (2) 1
--335400000 pushed to stack
-Bsf Result 48.402542
+attribute: (2) 7
+-671026880 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 4
 
 Result has attribute: (1) 1
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 48.402542	 45.858227	
+Result has attribute: (2) 7
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 73.579964	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 3
 
 attribute: (1) 1
 
 attribute: (2) 1
-1879158576 pushed to stack
--1149094320 pushed to stack
--1184754320 pushed to stack
--1184773680 pushed to stack
--1143925248 pushed to stack
--1141973760 pushed to stack
--1141674368 pushed to stack
--1141670912 pushed to stack
--1141620272 pushed to stack
-Bsf Result 8.927976
+-1341946512 pushed to stack
+Bsf Result 107.619789
 
-Result has attribute: (0) 1
+Result has attribute: (0) 3
 
 Result has attribute: (1) 1
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 8.927976	 6.226909	
+0	 0	 0	 0	 0	 107.619789	 74.642235	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 5
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-1879444224 pushed to stack
-Bsf Result 53.633278
-0	 0	 0	 0	 0	 53.633278	 53.633278	
+attribute: (2) 6
+469872432 pushed to stack
+-121712560 pushed to stack
+-297873632 pushed to stack
+-298780032 pushed to stack
+-298792480 pushed to stack
+-121067744 pushed to stack
+-121053472 pushed to stack
+-120889520 pushed to stack
+-120886064 pushed to stack
+Bsf Result 56.484055
+
+Result has attribute: (0) 5
+
+Result has attribute: (1) 8
+
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 56.484055	 12.931601	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
 attribute: (1) 1
 
-attribute: (2) 1
-872488944 pushed to stack
--547069408 pushed to stack
--560692320 pushed to stack
--580259872 pushed to stack
-406645232 pushed to stack
-406923488 pushed to stack
-407197840 pushed to stack
-Bsf Result 18.955242
+attribute: (2) 4
+470156304 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
 Result has attribute: (1) 1
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 18.955242	 15.814714	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 106.392296	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
 attribute: (1) 1
 
-attribute: (2) 1
--937500048 pushed to stack
-Bsf Result 55.103359
-0	 0	 0	 0	 0	 55.103359	 55.103359	
+attribute: (2) 7
+-939450384 pushed to stack
+1472736256 pushed to stack
+1436117616 pushed to stack
+1435636608 pushed to stack
+-995899456 pushed to stack
+-995897888 pushed to stack
+-995609808 pushed to stack
+Bsf Result 27.728697
+
+Result has attribute: (0) 0
+
+Result has attribute: (1) 1
+
+Result has attribute: (2) 7
+0	 0	 0	 0	 0	 27.728697	 21.574501	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
 attribute: (1) 1
 
-attribute: (2) 1
--1673715008 pushed to stack
-Bsf Result 69.971657
+attribute: (2) 5
+1746866944 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
 Result has attribute: (1) 1
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 69.971657	 52.175846	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 87.148132	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 3
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
-268558128 pushed to stack
-Bsf Result 41.705986
+attribute: (2) 5
+1346187424 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 3
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 41.705986	 39.926384	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 93.037537	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 3
 
-attribute: (1) 1
+attribute: (1) 6
 
-attribute: (2) 1
--2144556000 pushed to stack
-Bsf Result 70.608490
+attribute: (2) 3
+-1342054608 pushed to stack
+Bsf Result 137.964706
 
-Result has attribute: (0) 1
+Result has attribute: (0) 3
 
-Result has attribute: (1) 1
+Result has attribute: (1) 6
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 70.608490	 50.097160	
+Result has attribute: (2) 3
+0	 0	 0	 0	 0	 137.964706	 63.232975	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
--1409195296 pushed to stack
-Bsf Result 68.960533
+attribute: (2) 0
+942430432 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 68.960533	 46.541676	
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 113.463409	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 6
 
-attribute: (2) 1
--603592432 pushed to stack
-Bsf Result 73.978973
+attribute: (2) 7
+1610701808 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 6
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 73.978973	 56.441303	
+Result has attribute: (2) 7
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 96.200768	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-1879059216 pushed to stack
--177934176 pushed to stack
--177933408 pushed to stack
--177773504 pushed to stack
--177676672 pushed to stack
--177574496 pushed to stack
--177412656 pushed to stack
--177475936 pushed to stack
--177420496 pushed to stack
--177419632 pushed to stack
-Bsf Result 10.770708
+attribute: (2) 8
+738751120 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 10.770708	 7.814429	
+Result has attribute: (2) 8
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 109.690308	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
-67187424 pushed to stack
-1503746096 pushed to stack
-Bsf Result 29.198780
-0	 0	 0	 0	 0	 29.198780	 29.198780	
+attribute: (2) 7
+469773072 pushed to stack
+2103452112 pushed to stack
+2103815184 pushed to stack
+2104057232 pushed to stack
+2104057488 pushed to stack
+2104064080 pushed to stack
+2104065808 pushed to stack
+2104321920 pushed to stack
+2104602768 pushed to stack
+2104603632 pushed to stack
+Bsf Result 19.283319
+
+Result has attribute: (0) 7
 
+Result has attribute: (1) 2
+
+Result has attribute: (2) 7
+0	 0	 0	 0	 0	 19.283319	 18.379349	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-1342242592 pushed to stack
-1825688752 pushed to stack
--297937616 pushed to stack
--300495920 pushed to stack
-Bsf Result 27.964130
-0	 0	 0	 0	 0	 27.964130	 27.964130	
+attribute: (2) 6
+-1744751904 pushed to stack
+-580806256 pushed to stack
+Bsf Result 82.142021
+
+Result has attribute: (0) 6
+
+Result has attribute: (1) 7
+
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 82.142021	 67.039352	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 4
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-1610836880 pushed to stack
-Bsf Result 38.877285
+attribute: (2) 5
+201391904 pushed to stack
+737249904 pushed to stack
+710348384 pushed to stack
+710323296 pushed to stack
+Bsf Result 46.609245
 
-Result has attribute: (0) 1
+Result has attribute: (0) 4
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 38.877285	 38.491554	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 46.609245	 42.135780	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 8
 
-attribute: (1) 1
+attribute: (1) 6
 
-attribute: (2) 1
--1207879696 pushed to stack
-Bsf Result 65.700562
+attribute: (2) 5
+335777344 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 8
 
-Result has attribute: (1) 1
+Result has attribute: (1) 6
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 65.700562	 64.869606	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 78.825439	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 4
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-268867392 pushed to stack
-Bsf Result 24.706781
+attribute: (2) 6
+1879131600 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 4
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 24.706781	 21.101372	
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 86.068405	
 
 --------------------------------------------------------------
 
@@ -1371,377 +1415,401 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 0
 
-attribute: (2) 1
-1611041600 pushed to stack
-Bsf Result 17.704727
+attribute: (2) 0
+-1341747120 pushed to stack
+Bsf Result 96.981201
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 0
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 17.704727	 14.047644	
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 96.981201	 53.714619	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 4
 
-attribute: (2) 1
--66951776 pushed to stack
--1776793072 pushed to stack
-Bsf Result 30.291477
-0	 0	 0	 0	 0	 30.291477	 30.291477	
+attribute: (2) 6
+335985616 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
+
+Result has attribute: (0) 6
+
+Result has attribute: (1) 4
+
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 28.489508	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 8
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
--1538748144 pushed to stack
-Bsf Result 121.217743
+attribute: (2) 2
+-335299824 pushed to stack
+89995840 pushed to stack
+Bsf Result 82.389153
 
-Result has attribute: (0) 1
+Result has attribute: (0) 8
 
-Result has attribute: (1) 1
+Result has attribute: (1) 2
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 121.217743	 103.330841	
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 82.389153	 78.822647	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
 attribute: (1) 1
 
-attribute: (2) 1
-1610621984 pushed to stack
-Bsf Result 62.314781
+attribute: (2) 6
+1145625952 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
 Result has attribute: (1) 1
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 62.314781	 57.027195	
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 194.457901	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
 attribute: (1) 1
 
-attribute: (2) 1
-1879158576 pushed to stack
--1149094320 pushed to stack
--1184754320 pushed to stack
--1184773680 pushed to stack
--1143925248 pushed to stack
--1141974016 pushed to stack
--1141972160 pushed to stack
--1141971488 pushed to stack
--1141726480 pushed to stack
-Bsf Result 21.425974
-0	 0	 0	 0	 0	 21.425974	 21.425974	
+attribute: (2) 5
+335553568 pushed to stack
+Bsf Result 179.077866
 
+Result has attribute: (0) 2
+
+Result has attribute: (1) 1
+
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 179.077866	 94.050995	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 6
 
-attribute: (2) 1
-269014752 pushed to stack
-Bsf Result 54.720337
-0	 0	 0	 0	 0	 54.720337	 54.720337	
+attribute: (2) 5
+469872432 pushed to stack
+-121712560 pushed to stack
+-297873632 pushed to stack
+-298780032 pushed to stack
+-298792480 pushed to stack
+-121068000 pushed to stack
+-121065568 pushed to stack
+-121064704 pushed to stack
+-121058400 pushed to stack
+Bsf Result 47.468754
+
+Result has attribute: (0) 0
 
+Result has attribute: (1) 6
+
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 47.468754	 37.550514	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 3
 
 attribute: (2) 1
-70943664 pushed to stack
-Bsf Result 42.743687
+-1341603312 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 7
 
-Result has attribute: (1) 1
+Result has attribute: (1) 3
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 42.743687	 29.765280	
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 108.504150	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 3
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-1009913840 pushed to stack
-Bsf Result 57.888996
+attribute: (2) 7
+-1741002768 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 3
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 57.888996	 51.519642	
+Result has attribute: (2) 7
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 59.247101	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 4
 
-attribute: (2) 1
-872545008 pushed to stack
--1907204240 pushed to stack
-Bsf Result 31.669283
+attribute: (2) 4
+338261392 pushed to stack
+Bsf Result 163.447342
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
-Result has attribute: (1) 1
+Result has attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 31.669283	 24.924025	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 163.447342	 86.747780	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 7
 
 attribute: (2) 1
-874832688 pushed to stack
-Bsf Result 80.228729
+-939394320 pushed to stack
+-175469232 pushed to stack
+Bsf Result 72.094086
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 80.228729	 71.520897	
+0	 0	 0	 0	 0	 72.094086	 38.113731	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 6
 
-attribute: (2) 1
-1879105584 pushed to stack
-1139749152 pushed to stack
-1126646976 pushed to stack
-1098084096 pushed to stack
-1096985792 pushed to stack
-612006176 pushed to stack
-Bsf Result 43.187477
+attribute: (2) 8
+-2145581280 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
-Result has attribute: (1) 1
+Result has attribute: (1) 6
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 43.187477	 36.818615	
+Result has attribute: (2) 8
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 128.749359	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 3
 
-attribute: (2) 1
-536900032 pushed to stack
--1638840752 pushed to stack
-Bsf Result 37.136547
-0	 0	 0	 0	 0	 37.136547	 37.136547	
+attribute: (2) 3
+469819440 pushed to stack
+-546691184 pushed to stack
+-580818016 pushed to stack
+-580830720 pushed to stack
+-580843312 pushed to stack
+-545212384 pushed to stack
+Bsf Result 66.888580
+
+Result has attribute: (0) 7
 
+Result has attribute: (1) 3
+
+Result has attribute: (2) 3
+0	 0	 0	 0	 0	 66.888580	 55.743324	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 0
 
-attribute: (2) 1
--201079504 pushed to stack
-Bsf Result 43.373039
+attribute: (2) 4
+67137984 pushed to stack
+-1583113648 pushed to stack
+Bsf Result 90.345909
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
-Result has attribute: (1) 1
+Result has attribute: (1) 0
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 43.373039	 32.360397	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 90.345909	 75.443275	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 5
 
-attribute: (1) 1
+attribute: (1) 4
 
-attribute: (2) 1
-1879112208 pushed to stack
--1978091072 pushed to stack
--1978107040 pushed to stack
--1978106624 pushed to stack
--1978102592 pushed to stack
--1978101248 pushed to stack
-Bsf Result 9.814394
+attribute: (2) 5
+-1945911744 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 5
 
-Result has attribute: (1) 1
+Result has attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 9.814394	 8.787116	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 51.342354	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 5
 
-attribute: (2) 1
-684979552 pushed to stack
-Bsf Result 161.402725
+attribute: (2) 6
+469826064 pushed to stack
+1041780016 pushed to stack
+1041763984 pushed to stack
+1041764400 pushed to stack
+1041768432 pushed to stack
+1041769776 pushed to stack
+Bsf Result 69.583961
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 161.402725	 117.779655	
+Result has attribute: (2) 6
+0	 0	 0	 0	 0	 69.583961	 20.238564	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 5
 
 attribute: (2) 1
-1409344352 pushed to stack
--566780560 pushed to stack
--580234128 pushed to stack
--580246992 pushed to stack
-Bsf Result 17.555336
+-1059875776 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
-Result has attribute: (1) 1
+Result has attribute: (1) 5
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 17.555336	 16.729439	
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 222.111847	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 3
 
-attribute: (2) 1
-872551632 pushed to stack
--1953444976 pushed to stack
--1975664752 pushed to stack
--1951976896 pushed to stack
--1951974304 pushed to stack
-Bsf Result 31.467627
-0	 0	 0	 0	 0	 31.467627	 31.467627	
+attribute: (2) 4
+-201266608 pushed to stack
+-781155888 pushed to stack
+-781178880 pushed to stack
+-779305792 pushed to stack
+Bsf Result 41.297688
+0	 0	 0	 0	 0	 41.297688	 41.297688	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 4
 
-attribute: (2) 1
-1476463392 pushed to stack
-Bsf Result 37.288506
+attribute: (2) 3
+335569888 pushed to stack
+1977690624 pushed to stack
+1993738384 pushed to stack
+-1335514192 pushed to stack
+-1335512464 pushed to stack
+Bsf Result 86.890022
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
-Result has attribute: (1) 1
+Result has attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 37.288506	 34.979401	
+Result has attribute: (2) 3
+0	 0	 0	 0	 0	 86.890022	 52.164558	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
--589765264 pushed to stack
-Bsf Result 103.851868
+attribute: (2) 5
+-671020256 pushed to stack
+Bsf Result 169.633499
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 2
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 103.851868	 59.663322	
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 169.633499	 88.554657	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 4
 
-attribute: (2) 1
--1342084176 pushed to stack
-Bsf Result 23.980293
+attribute: (2) 3
+-2066169152 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
-Result has attribute: (1) 1
+Result has attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 23.980293	 20.613644	
+Result has attribute: (2) 3
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 107.202408	
 
 --------------------------------------------------------------
 
@@ -1749,147 +1817,166 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
--57526816 pushed to stack
-Bsf Result 161.757645
+attribute: (2) 0
+1543595200 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
 Result has attribute: (0) 1
 
-Result has attribute: (1) 1
+Result has attribute: (1) 2
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 161.757645	 81.952675	
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 26.231581	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 7
 
-attribute: (2) 1
-872488944 pushed to stack
--547069408 pushed to stack
--548334912 pushed to stack
--560698256 pushed to stack
-406645936 pushed to stack
-406646800 pushed to stack
-406914848 pushed to stack
-406915968 pushed to stack
-407154144 pushed to stack
-Bsf Result 29.538067
+attribute: (2) 2
+-1668134224 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 7
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 29.538067	 28.280409	
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 115.619377	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 2
 
-attribute: (1) 1
+attribute: (1) 0
 
-attribute: (2) 1
-1751138960 pushed to stack
-Bsf Result 152.432739
+attribute: (2) 0
+-939450384 pushed to stack
+1472736256 pushed to stack
+1470936064 pushed to stack
+1435956864 pushed to stack
+-995898752 pushed to stack
+-995897024 pushed to stack
+-995891840 pushed to stack
+-995890720 pushed to stack
+-995557440 pushed to stack
+Bsf Result 40.732449
 
-Result has attribute: (0) 1
+Result has attribute: (0) 2
 
-Result has attribute: (1) 1
+Result has attribute: (1) 0
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 152.432739	 88.434395	
+Result has attribute: (2) 0
+0	 0	 0	 0	 0	 40.732449	 37.945843	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 6
 
-attribute: (1) 1
+attribute: (1) 3
 
-attribute: (2) 1
-1073820384 pushed to stack
-Bsf Result 23.217812
+attribute: (2) 3
+-329237600 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 6
 
-Result has attribute: (1) 1
+Result has attribute: (1) 3
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 23.217812	 22.416067	
+Result has attribute: (2) 3
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 138.197998	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 0
 
-attribute: (1) 1
+attribute: (1) 4
 
-attribute: (2) 1
-1879112208 pushed to stack
--1978091072 pushed to stack
--1978107040 pushed to stack
--1978106368 pushed to stack
--1978104352 pushed to stack
--1978098560 pushed to stack
--1978091840 pushed to stack
--1977992544 pushed to stack
-Bsf Result 10.963167
+attribute: (2) 8
+-67030304 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 4
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 10.963167	 9.307024	
+Result has attribute: (2) 8
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 40.644489	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 4
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
--1541419392 pushed to stack
-Bsf Result 61.748581
+attribute: (2) 4
+469826064 pushed to stack
+1041780016 pushed to stack
+1041763984 pushed to stack
+1041764656 pushed to stack
+1041766672 pushed to stack
+1041774064 pushed to stack
+1041878640 pushed to stack
+1041881488 pushed to stack
+Bsf Result 31.266275
 
-Result has attribute: (0) 1
+Result has attribute: (0) 4
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 61.748581	 40.483963	
+Result has attribute: (2) 4
+0	 0	 0	 0	 0	 31.266275	 21.360430	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 5
 
-attribute: (1) 1
+attribute: (1) 8
+
+attribute: (2) 5
+1142947600 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
+
+Result has attribute: (0) 5
+
+Result has attribute: (1) 8
+
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 60.906113	
+
+--------------------------------------------------------------
+
+--------------------------------------------------------------
+
+attribute: (0) 0
 
+attribute: (1) 8
+
 attribute: (2) 1
--1540663152 pushed to stack
-Bsf Result 108.262123
+1143705616 pushed to stack
+Bsf Result 259.801086
 
-Result has attribute: (0) 1
+Result has attribute: (0) 0
 
-Result has attribute: (1) 1
+Result has attribute: (1) 8
 
 Result has attribute: (2) 1
-0	 0	 0	 0	 0	 108.262123	 93.820847	
+0	 0	 0	 0	 0	 259.801086	 138.267334	
 
 --------------------------------------------------------------
 
@@ -1897,71 +1984,95 @@ Result has attribute: (2) 1
 
 attribute: (0) 1
 
-attribute: (1) 1
+attribute: (1) 8
 
-attribute: (2) 1
-1342249216 pushed to stack
-1634374800 pushed to stack
-Bsf Result 46.382198
-0	 0	 0	 0	 0	 46.382198	 46.382198	
+attribute: (2) 3
+201398528 pushed to stack
+-294302176 pushed to stack
+Bsf Result 109.724304
+
+Result has attribute: (0) 1
+
+Result has attribute: (1) 8
 
+Result has attribute: (2) 3
+0	 0	 0	 0	 0	 109.724304	 103.713295	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 5
 
 attribute: (1) 1
 
-attribute: (2) 1
-1879327248 pushed to stack
-Bsf Result 47.124786
-0	 0	 0	 0	 0	 47.124786	 47.124786	
+attribute: (2) 5
+470039328 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
+
+Result has attribute: (0) 5
+
+Result has attribute: (1) 1
 
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 69.910599	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 8
 
-attribute: (1) 1
+attribute: (1) 2
 
-attribute: (2) 1
--1409211616 pushed to stack
-Bsf Result 75.702385
-0	 0	 0	 0	 0	 75.702385	 75.702385	
+attribute: (2) 5
+1610685488 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
+Result has attribute: (0) 8
+
+Result has attribute: (1) 2
+
+Result has attribute: (2) 5
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 147.934113	
+
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
 attribute: (1) 1
 
-attribute: (2) 1
-2013951056 pushed to stack
-Bsf Result 35.469391
+attribute: (2) 3
+671770224 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
 
-Result has attribute: (0) 1
+Result has attribute: (0) 7
 
 Result has attribute: (1) 1
 
-Result has attribute: (2) 1
-0	 0	 0	 0	 0	 35.469391	 27.750504	
+Result has attribute: (2) 3
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 45.951557	
 
 --------------------------------------------------------------
 
 --------------------------------------------------------------
 
-attribute: (0) 1
+attribute: (0) 7
 
-attribute: (1) 1
+attribute: (1) 3
 
-attribute: (2) 1
-1074582720 pushed to stack
-Bsf Result 70.489059
-0	 0	 0	 0	 0	 70.489059	 70.489059	
+attribute: (2) 2
+-66255536 pushed to stack
+Bsf Result 340282346638528859811704183484516925440.000000
+
+Result has attribute: (0) 7
+
+Result has attribute: (1) 3
+
+Result has attribute: (2) 2
+0	 0	 0	 0	 0	 340282346638528859811704183484516925440.000000	 141.822937	
 
 --------------------------------------------------------------
-525184.000000	 1731976.000000	 2260825.000000	 880705.000000	 413964.000000	 437278.000000	  0	 0	 0	 0	 0	 -1048576	 1048576	 28651	 1	 39654	 36.598234	 238162.000000	 0.000000	 117592.000000	 33525.000000	 0.000000	 355754.000000	 0.000000	 0	 1294669.000000	 0	
+503162.000000	 1772753.000000	 2279026.000000	 923380.000000	 512375.000000	 336979.000000	  0	 0	 0	 0	 0	 -1048576	 1048576	 28651	 1	 39654	 36.598234	 264865.000000	 0.000000	 15440.000000	 7022.000000	 0.000000	 280305.000000	 0.000000	 0	 1435755.000000	 0	

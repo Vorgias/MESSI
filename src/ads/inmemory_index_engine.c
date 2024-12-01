@@ -857,9 +857,7 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
     int read_number = fread(rawfile, sizeof(ts_type), index->settings->timeseries_size * ts_num, ifile);
     //////////////////////////////////////////////
     fread(attrfile,sizeof(attribute_type),index->settings->attribute_size*ts_num,afile);
-    // for(int i = 0;i<ts_num*index->settings->attribute_size;i++){
-    //     attrfile[i]=(attribute_type)1;
-    // }//testing
+
     //////////////////////////////////////////////
     COUNT_INPUT_TIME_END
     ///////////////////////////////////
@@ -867,6 +865,9 @@ void index_creation_pRecBuf_new_ekosmas_func(const char *ifilename, long int ts_
     // for(int i = 0;i<ts_num;i++){
     //     printf(" %ld ",attrfile[i]);
     // }
+    // for(int i = 0;i<ts_num*index->settings->attribute_size;i++){
+    //     attrfile[i]=(attribute_type)1;
+    // }//testing
     printf("attributes finished\n");
     if(total_records2 == ts_num){
         printf("NUMBER OF ATTRIBUTES == NUMBER OF TIMESERIES");
@@ -4311,6 +4312,13 @@ void buildLeafKdTree(isax_node* leaf,isax_index* index){
                     pointlist[i].point[j] = (float)temp1[j];
                 }
             }
+
+
+            // for(j = 0; j < dim; j++){
+            //     printf("last is (%d)%d\n",j,leaf->buffer->partial_attribute_buffer[i-1][j]);
+            // }
+
+
             if ((leaf->kdtree = kd_buildTree(pointlist, npoints, data_constr, data_destr,min, max, dim, nthreads)) == NULL) {
                 fprintf(stderr, "Error building kd-tree\n");
                 exit(EXIT_FAILURE);
@@ -4366,16 +4374,19 @@ void tree_index_creation_from_pRecBuf_fai_blocking(void *transferdata)
         ///////////////////////////////******************************************************************* */
         //building kd tree in each leaf and numbering leafs
         if(current_fbl_node->node->is_leaf){
-            buildLeafKdTree(current_fbl_node->node,index);
+            if(current_fbl_node->node->buffer->partial_buffer_size>0){buildLeafKdTree(current_fbl_node->node,index);}
+                else{current_fbl_node->node->kdtree =NULL;}
         }else{
             int num=0;
             isax_node* temp = current_fbl_node->node->leftmost_leaf;
             while(temp!=NULL){
-                buildLeafKdTree(temp,index);
+                if(temp->buffer->partial_buffer_size>0){buildLeafKdTree(temp,index);}
+                    else{temp->kdtree =NULL;}
                 temp->leaf_id = num++;
                 temp=temp->leaflist_next;
             }
         }
+    
         ///////////////////////////////******************************************************************* */
     }
 

@@ -263,10 +263,10 @@ void isax_query_binary_file_traditional_vorgias(const char *ifilename,const char
                     index->settings->ts_values_per_paa_segment);
         //printf("predicate : %d\n",*attribute);///////////////////
         //cleanup_skipSearchlists(index);////////////////////////////////
-        printf("\n--------------------------------------------------------------\n");
-        for(int i=0;i<index->settings->attribute_size;i++){
-            printf("\nattribute: (%d) %d\n",i,attribute[i]);
-        }
+        // printf("\n--------------------------------------------------------------\n");
+        // for(int i=0;i<index->settings->attribute_size;i++){
+        //     printf("\nattribute: (%d) %d\n",i,attribute[i]);
+        // }
         query_result result = search_function(ts, paa, index, &nodelist, minimum_distance,attribute);//////////////
         
         q_loaded++;
@@ -276,7 +276,7 @@ void isax_query_binary_file_traditional_vorgias(const char *ifilename,const char
         PRINT_QUERY_STATS(result.distance);
         COUNT_OUTPUT_TIME_START
         COUNT_QUERY_ANSWERING_TIME_START
-        printf("\n--------------------------------------------------------------\n");
+       // printf("\n--------------------------------------------------------------\n");
     }
     
     free(nodelist.nlist);
